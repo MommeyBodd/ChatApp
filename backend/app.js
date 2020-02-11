@@ -19,9 +19,14 @@ const authRoutes = require("./routes/authRoutes");
 const passportSetup = require("./config/passportSetup");
 const mongoose = require("mongoose");
 const globalConfig = require("./config/globalConfig");
+const bodyParser = require("body-parser");
 
+const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static("client/build"));
 mongoose.connect(globalConfig.mongoDB.dbURI, () => {
   console.log("Connected to MongoDB");
 });
@@ -31,6 +36,4 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.listen(3030, () => {
-  console.log("Server is running on port: 3030");
-});
+app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));

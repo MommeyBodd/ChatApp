@@ -9,13 +9,18 @@ passport.use(
       clientID: globalConfig.google.clientID,
       clientSecret: globalConfig.google.clientSecret
     },
-    (accessToken, refreshToken, profileInformation, done) => {
-      new User({
-        userName: profileInformation.displayName,
-        googleId: profileInformation.id
-      })
+    (accessToken, refreshToken, profile, done) => {
+      const userData = {
+        userName: profile.displayName,
+        userEmail: profile.emails[0].value,
+        googleId: profile.id,
+        token: accessToken
+      };
+
+      new User(userData)
         .save()
         .then(newUser => console.log(`New user Created ${newUser}`));
+      done(null, userData);
     }
   )
 );

@@ -1,9 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.css";
-import App from "./App";
 import * as serviceWorker from "./config/serviceWorker";
+import { Routes } from "./routes/Routes";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 
 serviceWorker.unregister();
