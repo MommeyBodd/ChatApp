@@ -7,5 +7,8 @@ module.exports = {
   mongoDB: {
     dbURI:
       "mongodb+srv://Admin:admin@chatappdb-tytlu.mongodb.net/test?retryWrites=true&w=majority"
+  },
+  session: {
+    cookieKey: "qweqweasdwqedasdqwdsdv"
   }
 };

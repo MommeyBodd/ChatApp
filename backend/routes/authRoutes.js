@@ -3,7 +3,8 @@ const passport = require("passport");
 //ath login
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  console.log("user logged out");
+  res.redirect("/");
 });
 
 router.get("/logout", (req, res) => {
@@ -18,7 +19,11 @@ router.get(
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.send("you reached the callback URI");
+  res.redirect("/profile");
+});
+
+router.get("/user", passport.authenticate("google"), (req, res) => {
+  console.log("getting user data");
 });
 
 module.exports = router;
