@@ -1,4 +1,5 @@
 export const ROUTES = {
   login: "/",
-  chatRooms: "/chatRooms"
+  chatRooms: "/chatRooms",
+  profile: "/profile",
 };

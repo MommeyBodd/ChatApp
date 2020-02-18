@@ -7,6 +7,7 @@ export const Routes = () => {
   return (
     <Switch>
       <Route exact path={ROUTES.login} component={LoginPage} />
+      <Route exact path={ROUTES.profile} component={() => <div>hello pidor!</div>} />
       <Route
         exact
         path={ROUTES.chatRooms}

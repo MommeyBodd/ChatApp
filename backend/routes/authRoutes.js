@@ -14,16 +14,16 @@ router.get("/logout", (req, res) => {
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile", "email"]
+    scope: ["profile"]
   })
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.redirect("/profile");
+  // console.log('redirect')
+  const { accessToken, userId } = req.user;
+
+  res.redirect(`http://localhost:3000/profile?token=${accessToken}&userId=${userId}`);
 });
 
-router.get("/user", passport.authenticate("google"), (req, res) => {
-  console.log("getting user data");
-});
 
 module.exports = router;
