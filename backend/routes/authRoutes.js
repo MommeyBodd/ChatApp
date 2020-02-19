@@ -19,11 +19,9 @@ router.get(
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  // console.log('redirect')
-  const { accessToken, userId } = req.user;
+  const { token, userId } = req.user;
 
-  res.redirect(`http://localhost:3000/profile?token=${accessToken}&userId=${userId}`);
+  res.redirect(`http://localhost:3000/profile?token=${token}&userId=${userId}`);
 });
-
 
 module.exports = router;
