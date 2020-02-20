@@ -23,15 +23,17 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then(user => {
         if (user) {
-          done(null, {userId: user._id, accessToken});
+          done(null, { userId: user._id, token: accessToken });
         } else {
           new User({
             userName: profile.displayName,
             googleId: profile.id,
+            userEmail: profile.email,
+            avatar: profile.picture
           })
             .save()
             .then(newUser => {
-              done(null, {userId: newUser._id, token: accessToken});
+              done(null, { userId: newUser._id, token: accessToken });
             });
         }
       });

@@ -4,17 +4,17 @@ const passport = require("passport");
 
 router.get("/login", (req, res) => {
   console.log("user logged out");
-  res.redirect("/");
 });
 
 router.get("/logout", (req, res) => {
-  res.send("logging out");
+  req.logout();
+  res.redirect("http://localhost:3000");
 });
 
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile"]
+    scope: ["profile", "email"]
   })
 );
 

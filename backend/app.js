@@ -20,19 +20,19 @@ const passportSetup = require("./config/passportSetup");
 const mongoose = require("mongoose");
 const globalConfig = require("./config/globalConfig");
 const bodyParser = require("body-parser");
-// const cookieSession = require("cookie-session");
+const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
 
 const PORT = 3001;
 const app = express();
 
-// app.use(
-//   cookieSession({
-//     maxAge: 24 * 60 * 60 * 1000,
-//     keys: [globalConfig.session.cookieKey]
-//   })
-// );
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [globalConfig.session.cookieKey]
+  })
+);
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());

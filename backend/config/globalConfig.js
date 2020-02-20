@@ -9,6 +9,6 @@ module.exports = {
       "mongodb+srv://Admin:admin@chatappdb-tytlu.mongodb.net/test?retryWrites=true&w=majority"
   },
   session: {
-    cookieKey: "qweqweasdwqedasdqwdsdv"
+    cookieKey: "the-cookie-motherfucker-session-key"
   }
 };
