@@ -20,7 +20,7 @@ passport.use(
       clientID: globalConfig.google.clientID,
       clientSecret: globalConfig.google.clientSecret
     },
-    async (accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then(user => {
         if (user) {
           done(null, { userId: user._id, token: accessToken });

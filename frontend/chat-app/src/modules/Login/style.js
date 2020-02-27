@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import logInBg from "../../static/loginBG.jpg";
+// import {logInBg} from "../../static/loginBG.jpg";
 
 export const useStyles = makeStyles(() => ({
   container: {
@@ -8,7 +8,7 @@ export const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundImage: `url(${logInBg})`
+    // backgroundImage: `url(${logInBg})`
   },
   text: {
     backgroundColor: "#fff",
