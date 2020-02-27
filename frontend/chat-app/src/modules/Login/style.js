@@ -7,7 +7,7 @@ export const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
+    height: "100vh"
     // backgroundImage: `url(${logInBg})`
   },
   text: {
