@@ -1,12 +1,28 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import UserDashBoardLayout from "../components/UserDashboardLayout/UserDashboardLayout";
+import { getUserProfileStart } from "../actions/userDashBoardActions";
+import { isEmpty } from "lodash";
+import queryString from "query-string";
+import { login } from "../actions/authActions";
 
-class UserDashboardContainer extends Component {
-  render() {
-    return <div></div>;
-  }
-}
+const UserDashboardContainer = ({ location, history }) => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.userDashBoard.isAuth);
+  const isLoading = useSelector(state => state.userDashBoard.isAuth);
+  const userProfile = useSelector(state => state.userDashBoard.userProfile);
+
+  useEffect(() => {
+    const { token } = queryString.parse(location.search);
+    dispatch(getUserProfileStart({ token, history }));
+    console.log(userProfile);
+  }, [isLoading]);
+
+  return <UserDashBoardLayout userProfile={userProfile} />;
+};
 
 UserDashboardContainer.propTypes = {};
 
-export default UserDashboardContainer;
+export default connect(null, null)(UserDashboardContainer);

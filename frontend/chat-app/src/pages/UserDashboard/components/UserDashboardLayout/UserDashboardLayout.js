@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Header from "../NavBar/Header";
-import queryString from "query-string";
-import { login } from "../../actions/authActions";
 
-const UserDashBoardLayout = ({ location }) => {
-  // useEffect(() => {
-  //
-  // }, []);
-
+const UserDashBoardLayout = ({ userProfile }) => {
   return (
     <div>
-      <Header />
+      <Header userProfile={userProfile} />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+const { createError } = require("../../services/errorHandling");
 const User = require("../../models/userModel");
 
 const getUserProfile = async (req, res, next) => {
@@ -8,6 +9,7 @@ const getUserProfile = async (req, res, next) => {
 
     res.json({ userProfile });
   } catch (error) {
+    next(createError(error));
     res.json({ error: "Something Bad Happen" });
   }
 };

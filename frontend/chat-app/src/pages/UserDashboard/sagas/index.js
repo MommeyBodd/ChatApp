@@ -1,9 +1,9 @@
 import "regenerator-runtime/runtime";
 import { all } from "redux-saga/effects";
-import authSaga from "./authSaga";
+import userDashboardSaga from "./userDashboardSaga";
 
 function* rootSaga() {
-  yield all([authSaga()]);
+  yield all([userDashboardSaga()]);
 }
 
 export default rootSaga;

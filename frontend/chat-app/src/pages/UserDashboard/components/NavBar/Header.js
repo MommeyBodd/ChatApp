@@ -19,7 +19,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = ({}) => {
+const Header = ({ userProfile }) => {
+  const { userName, userEmail, avatar } = userProfile;
+
   const classes = useStyles();
 
   return (
@@ -35,7 +37,7 @@ const Header = ({}) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Hy, User
+            Welcome to ChatApp, {userName}!
           </Typography>
           <Button color="inherit">Logout</Button>
         </Toolbar>

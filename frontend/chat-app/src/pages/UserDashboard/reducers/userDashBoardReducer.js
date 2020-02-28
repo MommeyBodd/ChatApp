@@ -2,10 +2,8 @@ import { handleActions } from "redux-actions";
 import * as actions from "../actions/userDashBoardActions";
 const initialState = {
   isLoading: false,
-  userProfile: {},
-  token: null,
-  loginError: null,
   isAuth: false,
+  userProfile: {},
   errors: null
 };
 
@@ -15,10 +13,10 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getUserProfileSuccess](state, { payload }) {
-      return { ...state, isLoading: false, userProfile: payload };
+      return { ...state, isLoading: false, userProfile: payload, isAuth: true };
     },
     [actions.getUserProfileFail](state, { payload }) {
-      return { ...state, isLoading: false, errors: payload };
+      return { ...state, isLoading: false, errors: payload, isAuth: false };
     }
   },
   initialState

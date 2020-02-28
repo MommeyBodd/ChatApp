@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import userDashBoardReducer from "./userDashBoardReducer";
+import userDashBoard from "./userDashBoardReducer";
 
 export default combineReducers({
-  userDashBoardReducer
+  userDashBoard
 });
