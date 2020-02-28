@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
-import { useStyles } from "./style";
+import { useStyles } from "../styles/style";
 import PropTypes from "prop-types";
 
 const LoginPage = ({}) => {

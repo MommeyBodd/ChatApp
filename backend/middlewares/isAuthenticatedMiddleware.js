@@ -3,7 +3,10 @@ const { verifyGoogleAccessToken } = require("../api/verification");
 const isAuthenticated = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    await verifyGoogleAccessToken(token);
+
+    req.verification = await verifyGoogleAccessToken(token).then(
+      response => response.data
+    );
 
     next();
   } catch (error) {

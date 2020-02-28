@@ -16,7 +16,7 @@ console.log(`Server listening port: 3030`);
 
 const express = require("express");
 const authRoutes = require("./routes/authRoutes");
-const testRoutes = require("./routes/mainRoutes");
+const userRoutes = require("./routes/userRoutes");
 const passportSetup = require("./config/passportSetup");
 const mongoose = require("mongoose");
 const globalConfig = require("./config/globalConfig");
@@ -45,6 +45,6 @@ mongoose.connect(globalConfig.mongoDB.dbURI, () => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/test", testRoutes);
+app.use("/user", userRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
