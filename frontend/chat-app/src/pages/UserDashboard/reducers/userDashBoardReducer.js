@@ -1,5 +1,6 @@
 import { handleActions } from "redux-actions";
 import * as actions from "../actions/userDashBoardActions";
+import * as authActions from "../actions/authActions";
 const initialState = {
   isLoading: false,
   isAuth: false,
@@ -17,6 +18,9 @@ export default handleActions(
     },
     [actions.getUserProfileFail](state, { payload }) {
       return { ...state, isLoading: false, errors: payload, isAuth: false };
+    },
+    [authActions.logout](state) {
+      return { ...state, isAuth: false };
     }
   },
   initialState

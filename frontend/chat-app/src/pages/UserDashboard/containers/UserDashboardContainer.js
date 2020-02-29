@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import UserDashBoardLayout from "../components/UserDashboardLayout/UserDashboardLayout";
-import { getUserProfileStart } from "../actions/userDashBoardActions";
+import {
+  getUserProfileFail,
+  getUserProfileStart
+} from "../actions/userDashBoardActions";
 import { isEmpty } from "lodash";
 import queryString from "query-string";
-import { login } from "../actions/authActions";
+import { login, logout } from "../actions/authActions";
 
 const UserDashboardContainer = ({ location, history }) => {
   const dispatch = useDispatch();
@@ -23,7 +26,16 @@ const UserDashboardContainer = ({ location, history }) => {
     dispatch(getUserProfileStart({ token: tokenToUse, history }));
   }, [isLoading]);
 
-  return <UserDashBoardLayout userProfile={userProfile} />;
+  const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);
+
+  return (
+    isAuth && (
+      <UserDashBoardLayout
+        userProfile={userProfile}
+        onHandleLogout={onHandleLogout}
+      />
+    )
+  );
 };
 
 UserDashboardContainer.propTypes = {};

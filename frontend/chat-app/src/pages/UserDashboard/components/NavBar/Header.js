@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = ({ userProfile }) => {
+const Header = ({ userProfile, onHandleLogout }) => {
   const { userName, userEmail, avatar } = userProfile;
 
   const classes = useStyles();
@@ -39,7 +39,9 @@ const Header = ({ userProfile }) => {
           <Typography variant="h6" className={classes.title}>
             Welcome to ChatApp, {userName}!
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={() => onHandleLogout()}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
