@@ -5,10 +5,11 @@ import api from "../../../config/apiConfig";
 import axios from "axios";
 
 function* getUserProfile(action) {
+  const { token, history } = action.payload;
   try {
     yield localStorage.removeItem("token");
-    yield (axios.defaults.headers.common.Authorization = `Bearer ${action.payload.token}`);
-    yield (api.defaults.headers.common.Authorization = `Bearer ${action.payload.token}`);
+    yield (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
+    yield (api.defaults.headers.common.Authorization = `Bearer ${token}`);
 
     const response = yield userDashboardApi.getClientProfile();
 
@@ -16,14 +17,14 @@ function* getUserProfile(action) {
 
     yield put(actions.getUserProfileSuccess(userProfile));
 
-    yield localStorage.setItem(`token`, `Bearer ${action.payload}`);
+    yield localStorage.setItem(`token`, `Bearer ${token}`);
   } catch (error) {
     yield localStorage.removeItem("token");
     yield delete axios.defaults.headers.common.Authorization;
     yield delete api.defaults.headers.common.Authorization;
 
     yield put(actions.getUserProfileFail(error));
-    yield action.payload.history.push("/");
+    yield history.push("/");
   }
 }
 

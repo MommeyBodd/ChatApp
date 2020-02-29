@@ -16,8 +16,11 @@ const UserDashboardContainer = ({ location, history }) => {
 
   useEffect(() => {
     const { token } = queryString.parse(location.search);
-    dispatch(getUserProfileStart({ token, history }));
-    console.log(userProfile);
+    const localStorageToken =
+      localStorage.token && localStorage.token.split(" ")[1];
+
+    const tokenToUse = token || localStorageToken;
+    dispatch(getUserProfileStart({ token: tokenToUse, history }));
   }, [isLoading]);
 
   return <UserDashBoardLayout userProfile={userProfile} />;
