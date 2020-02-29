@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-// import {logInBg} from "../../static/loginBG.jpg";
+import logInBg from "../../../static/loginBG.jpg";
 
 export const useStyles = makeStyles(() => ({
   container: {
@@ -7,8 +7,8 @@ export const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh"
-    // backgroundImage: `url(${logInBg})`
+    height: "100vh",
+    backgroundImage: `url(${logInBg})`
   },
   text: {
     backgroundColor: "#fff",
@@ -25,10 +25,10 @@ export const useStyles = makeStyles(() => ({
     // backgroundColor: "#a5cc6e",
     backgroundColor: "#4bbae7",
     border: "solid 3px",
-    transition: ".3s",
+    transition: ".2s",
     "&:hover": {
       backgroundColor: "#4bbae7",
-      boxShadow: "0 0 19px 0px #757069",
+      // boxShadow: "0 0 19px 0px #757069",
       fontSize: 30
     }
   }

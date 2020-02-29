@@ -37,7 +37,7 @@ const Header = ({ userProfile, onHandleLogout }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Welcome to ChatApp, {userName}!
+            Hello, {userName}!
           </Typography>
           <Button color="inherit" onClick={() => onHandleLogout()}>
             Logout
