@@ -13,6 +13,7 @@ const UserDashboardContainer = ({ location, history }) => {
   const isAuth = useSelector(state => state.userDashBoard.isAuth);
   const isLoading = useSelector(state => state.userDashBoard.isAuth);
   const userProfile = useSelector(state => state.userDashBoard.userProfile);
+  const socket = socketIOClient("http://localhost:3001");
 
   useEffect(() => {
     const { token } = queryString.parse(location.search);
@@ -20,11 +21,11 @@ const UserDashboardContainer = ({ location, history }) => {
       localStorage.token && localStorage.token.split(" ")[1];
 
     const tokenToUse = token || localStorageToken;
+    console.log(tokenToUse);
     dispatch(getUserProfileStart({ token: tokenToUse, history }));
 
-    const socket = socketIOClient("http://localhost:3001");
-    socket.on("FromAPI", data => console.log(data));
-  }, [isLoading]);
+    // socket.on("FromAPI", data => console.log(data));
+  }, []);
 
   const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);
 
@@ -40,4 +41,4 @@ const UserDashboardContainer = ({ location, history }) => {
 
 UserDashboardContainer.propTypes = {};
 
-export default connect(null, null)(UserDashboardContainer);
+export default connect(null, null)(React.memo(UserDashboardContainer));

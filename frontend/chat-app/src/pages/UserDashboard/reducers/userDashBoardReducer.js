@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   isAuth: false,
   userProfile: {},
+  userChatRooms: [],
   errors: null
 };
 
@@ -21,6 +22,19 @@ export default handleActions(
     },
     [authActions.logout](state) {
       return { ...state, isAuth: false };
+    },
+    [actions.createChatRoomRequest](state) {
+      return { ...state, isLoading: true };
+    },
+    [actions.createChatRoomSuccess](state, { payload }) {
+      return {
+        ...state,
+        userChatRooms: [...state.userChatRooms, payload],
+        isLoading: false
+      };
+    },
+    [actions.createChatRoomFail](state, { payload }) {
+      return { ...state, errors: payload, isLoading: false };
     }
   },
   initialState

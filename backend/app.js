@@ -3,6 +3,7 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 const passportSetup = require("./config/passportSetup");
 const mongoose = require("mongoose");
 const globalConfig = require("./config/globalConfig");
@@ -31,13 +32,14 @@ mongoose.connect(globalConfig.mongoDB.dbURI, () => {
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
+app.use("/chat", chatRoutes);
 
-io.on("connection", socket => {
-  console.log("a user connected");
-
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
+// io.on("connection", socket => {
+//   console.log("a user connected");
+//
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   });
+// });
 
 http.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));

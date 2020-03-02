@@ -37,9 +37,6 @@ passport.use(
             });
         }
       });
-      // const userResp = await User.findOne({ googleId: profile.id });
-      // console.log("Done: ", userResp)
-      // return done(null, {accessToken, profile})
     }
   )
 );
