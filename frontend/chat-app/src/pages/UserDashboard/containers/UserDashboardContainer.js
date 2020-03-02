@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import UserDashBoardLayout from "../components/UserDashboardLayout/UserDashboardLayout";
-import {
-  getUserProfileFail,
-  getUserProfileStart
-} from "../actions/userDashBoardActions";
-import { isEmpty } from "lodash";
+import { getUserProfileStart } from "../actions/userDashBoardActions";
 import queryString from "query-string";
-import { login, logout } from "../actions/authActions";
+import { logout } from "../actions/authActions";
+import socketIOClient from "socket.io-client";
 
 const UserDashboardContainer = ({ location, history }) => {
   const dispatch = useDispatch();
@@ -24,6 +21,9 @@ const UserDashboardContainer = ({ location, history }) => {
 
     const tokenToUse = token || localStorageToken;
     dispatch(getUserProfileStart({ token: tokenToUse, history }));
+
+    const socket = socketIOClient("http://localhost:3001");
+    socket.on("FromAPI", data => console.log(data));
   }, [isLoading]);
 
   const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);

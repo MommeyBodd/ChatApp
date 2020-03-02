@@ -1,4 +1,6 @@
-const express = require("express");
+const app = require("express")();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const passportSetup = require("./config/passportSetup");
@@ -8,35 +10,8 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
-const server = require("http").createServer();
 
 const PORT = 3001;
-const app = express();
-app.io = require("socket.io")();
-const io = require("socket.io")(server);
-
-io.on("connection", function(client) {
-  client.on("register", () => console.log("register"));
-
-  client.on("join", () => console.log("join"));
-
-  client.on("leave", () => console.log("leave"));
-
-  client.on("message", () => console.log("message"));
-
-  client.on("chatrooms", () => console.log("chatrooms"));
-
-  client.on("availableUsers", () => console.log("availableUsers"));
-
-  client.on("disconnect", function() {
-    console.log("client disconnect...", client.id);
-  });
-
-  client.on("error", function(err) {
-    console.log("received error from client:", client.id);
-    console.log(err);
-  });
-});
 
 app.use(
   cookieSession({
@@ -57,4 +32,12 @@ mongoose.connect(globalConfig.mongoDB.dbURI, () => {
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 
-app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
+io.on("connection", socket => {
+  console.log("a user connected");
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
+
+http.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
