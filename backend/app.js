@@ -1,19 +1,3 @@
-// const WebSocket = require('ws');
-//
-// const server = new WebSocket.Server({ port: 3030 });
-//
-// server.on('connection', (ws) => {
-//   server.on('message', (message) => {
-//     server.clients.forEach((client) => {
-//       if (client !== ws && client.readyState === WebSocket.OPEN) {
-//         client.send(message);
-//       }
-//     });
-//   });
-// });
-
-console.log(`Server listening port: 3030`);
-
 const express = require("express");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -24,9 +8,35 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
+const server = require("http").createServer();
 
 const PORT = 3001;
 const app = express();
+app.io = require("socket.io")();
+const io = require("socket.io")(server);
+
+io.on("connection", function(client) {
+  client.on("register", () => console.log("register"));
+
+  client.on("join", () => console.log("join"));
+
+  client.on("leave", () => console.log("leave"));
+
+  client.on("message", () => console.log("message"));
+
+  client.on("chatrooms", () => console.log("chatrooms"));
+
+  client.on("availableUsers", () => console.log("availableUsers"));
+
+  client.on("disconnect", function() {
+    console.log("client disconnect...", client.id);
+  });
+
+  client.on("error", function(err) {
+    console.log("received error from client:", client.id);
+    console.log(err);
+  });
+});
 
 app.use(
   cookieSession({
