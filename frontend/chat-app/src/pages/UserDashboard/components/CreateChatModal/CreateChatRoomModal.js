@@ -44,7 +44,7 @@ const CreateChatRoomModal = () => {
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
-        style={{ height: 300 }}
+        style={{ height: 185 }}
       >
         Create Chat Room!
       </Button>
@@ -54,7 +54,7 @@ const CreateChatRoomModal = () => {
         aria-labelledby="form-dialog-title"
         fullWidth={100}
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Chat Room Creation</DialogTitle>
         <DialogContent>
           <DialogContentText>Create your own Chat Room!</DialogContentText>
           <TextField

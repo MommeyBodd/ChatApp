@@ -11,17 +11,19 @@ import socketIOClient from "socket.io-client";
 const UserDashboardContainer = ({ location, history }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.userDashBoard.isAuth);
-  const isLoading = useSelector(state => state.userDashBoard.isAuth);
+  const isLoading = useSelector(state => state.userDashBoard.isLoading);
   const userProfile = useSelector(state => state.userDashBoard.userProfile);
+  const userChatRooms = useSelector(state => state.userDashBoard.userChatRooms);
   const socket = socketIOClient("http://localhost:3001");
 
   useEffect(() => {
     const { token } = queryString.parse(location.search);
+
     const localStorageToken =
       localStorage.token && localStorage.token.split(" ")[1];
 
     const tokenToUse = token || localStorageToken;
-    console.log(tokenToUse);
+
     dispatch(getUserProfileStart({ token: tokenToUse, history }));
 
     // socket.on("FromAPI", data => console.log(data));
@@ -33,7 +35,9 @@ const UserDashboardContainer = ({ location, history }) => {
     isAuth && (
       <UserDashBoardLayout
         userProfile={userProfile}
+        userChatRooms={userChatRooms}
         onHandleLogout={onHandleLogout}
+        isLoading={isLoading}
       />
     )
   );

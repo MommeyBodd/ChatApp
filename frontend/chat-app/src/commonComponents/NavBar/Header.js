@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
+  bar: {
+    backgroundColor: "#009ddf"
+  },
   title: {
     flexGrow: 1
   }
@@ -26,16 +29,16 @@ const Header = ({ userProfile, onHandleLogout }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.bar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
+          {/*<IconButton*/}
+          {/*  edge="start"*/}
+          {/*  className={classes.menuButton}*/}
+          {/*  color="inherit"*/}
+          {/*  aria-label="menu"*/}
+          {/*>*/}
+          {/*  <MenuIcon />*/}
+          {/*</IconButton>*/}
           <Typography variant="h6" className={classes.title}>
             Hello, {userName}!
           </Typography>

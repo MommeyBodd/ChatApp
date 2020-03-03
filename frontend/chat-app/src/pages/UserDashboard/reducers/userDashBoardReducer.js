@@ -15,7 +15,14 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getUserProfileSuccess](state, { payload }) {
-      return { ...state, isLoading: false, userProfile: payload, isAuth: true };
+      const { userProfile, userChatRooms } = payload;
+      return {
+        ...state,
+        isLoading: false,
+        userProfile,
+        userChatRooms,
+        isAuth: true
+      };
     },
     [actions.getUserProfileFail](state, { payload }) {
       return { ...state, isLoading: false, errors: payload, isAuth: false };

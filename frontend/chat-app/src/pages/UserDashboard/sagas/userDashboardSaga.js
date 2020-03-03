@@ -13,9 +13,9 @@ function* getUserProfile(action) {
 
     const response = yield userDashboardApi.getClientProfile();
 
-    const { userProfile } = response.data;
+    const { userProfile, userChatRooms } = response.data;
 
-    yield put(actions.getUserProfileSuccess(userProfile));
+    yield put(actions.getUserProfileSuccess({ userProfile, userChatRooms }));
 
     yield localStorage.setItem(`token`, `Bearer ${token}`);
   } catch (error) {
