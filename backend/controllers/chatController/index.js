@@ -2,12 +2,12 @@ const Chat = require("../../models/chatModel");
 const createChatRoomController = async (req, res, next) => {
   try {
     const { chatName, creatorName, creatorId } = req.body;
+
     const createdChatRoom = await new Chat({
       chatName,
       creatorName,
       creatorId,
-      participants: [creatorId],
-      messages: []
+      participants: creatorId
     }).save();
 
     res.json(createdChatRoom);

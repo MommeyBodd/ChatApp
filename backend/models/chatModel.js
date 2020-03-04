@@ -5,10 +5,10 @@ const chatSchema = new Schema({
   chatName: { type: String, require: true },
   creatorId: String,
   creatorName: String,
-  participants: [Object],
+  participants: [{ type: Schema.Types.String, ref: "User" }],
   messages: [Object]
 });
 
-const Chat = mongoose.model("chat", chatSchema);
+const Chat = mongoose.model("Chat", chatSchema);
 
 module.exports = Chat;
