@@ -26,6 +26,7 @@ passport.use(
           done(null, { userId: user._id, token: accessToken });
         } else {
           new User({
+            _id: profile.id,
             userName: profile.displayName,
             googleId: profile.id,
             userEmail: profile.email,

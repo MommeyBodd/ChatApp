@@ -10,7 +10,6 @@ const UserDashBoardLayout = ({
   onHandleLogout,
   isLoading
 }) => {
-  console.log(isLoading);
   return (
     <div>
       <Header userProfile={userProfile} onHandleLogout={onHandleLogout} />

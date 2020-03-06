@@ -15,12 +15,14 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getUserProfileSuccess](state, { payload }) {
-      const { userProfile, userChatRooms } = payload;
+      // const { userProfile } = payload;
+      // const { participation } = userProfile;
+      console.log(payload);
       return {
         ...state,
         isLoading: false,
-        userProfile,
-        userChatRooms,
+        userProfile: payload,
+        userChatRooms: payload.participation,
         isAuth: true
       };
     },

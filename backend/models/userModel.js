@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  _id: {
+    type: String,
+    required: true
+  },
   userName: String,
   googleId: String,
   userEmail: String,
-  sentMessages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
+  sentMessages: Array,
   participation: [{ type: Schema.Types.ObjectId, ref: "Chat" }],
   avatar: String
 });

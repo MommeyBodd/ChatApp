@@ -6,12 +6,11 @@ const getUserProfile = async (req, res, next) => {
   try {
     const { user_id } = req.verification;
 
-    const [userProfile, userChatRooms] = await Promise.all([
-      User.findOne({ googleId: user_id }),
-      Chat.find({ participants: user_id })
-    ]);
+    const userProfile = await User.findOne({ _id: user_id }).populate(
+      "participation"
+    );
 
-    res.json({ userProfile, userChatRooms });
+    res.json({ userProfile });
   } catch (error) {
     next(createError(error));
     res.json({ error: "Something Bad Happen" });

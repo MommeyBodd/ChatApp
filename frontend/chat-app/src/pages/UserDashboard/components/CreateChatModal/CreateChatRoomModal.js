@@ -12,13 +12,14 @@ import { createChatRoomRequest } from "../../actions/userDashBoardActions";
 
 const CreateChatRoomModal = () => {
   const [open, setOpen] = useState(false);
-  const { userName, googleId } = useSelector(
+  const { userName, googleId, _id } = useSelector(
     state => state.userDashBoard.userProfile
   );
 
   const dispatch = useDispatch();
 
   const [chatCreationForm, changeField] = useState({
+    _id,
     chatName: "",
     creatorName: userName,
     creatorId: googleId
