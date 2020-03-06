@@ -15,8 +15,6 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getUserProfileSuccess](state, { payload }) {
-      // const { userProfile } = payload;
-      // const { participation } = userProfile;
       console.log(payload);
       return {
         ...state,
