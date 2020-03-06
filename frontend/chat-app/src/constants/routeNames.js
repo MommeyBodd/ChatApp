@@ -1,5 +1,5 @@
 export const ROUTES = {
-  login: "/",
-  chatRooms: "/chatRooms",
-  profile: "/profile"
+  LOGIN: "/",
+  PROFILE: "/profile",
+  CHAT_ROOMS: "/profile/chatRooms/:roomId"
 };

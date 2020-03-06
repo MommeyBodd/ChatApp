@@ -11,11 +11,9 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import chatImage from "../../static/chat-benefits.png";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,14 +34,12 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: "rotate(180deg)"
   }
-  // avatar: {
-  //  background: `url(${})`
-  // }
 }));
 
 const ChatCard = ({ userProfile, chatRoom }) => {
+  const history = useHistory();
   const { avatar, googleId } = userProfile;
-  const { chatName, creatorName, creatorId } = chatRoom;
+  const { chatName, creatorName, creatorId, _id } = chatRoom;
   const classes = useStyles();
 
   return (
@@ -73,20 +69,12 @@ const ChatCard = ({ userProfile, chatRoom }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/*<IconButton aria-label="add to favorites">*/}
-        {/*  <FavoriteIcon />*/}
-        {/*</IconButton>*/}
-        <Button color="primary">Enter to Chat</Button>
-        {/*<IconButton*/}
-        {/*  className={clsx(classes.expand, {*/}
-        {/*    [classes.expandOpen]: expanded*/}
-        {/*  })}*/}
-        {/*  onClick={handleExpandClick}*/}
-        {/*  aria-expanded={expanded}*/}
-        {/*  aria-label="show more"*/}
-        {/*>*/}
-        {/*  <ExpandMoreIcon />*/}
-        {/*</IconButton>*/}
+        <Button
+          color="primary"
+          onClick={() => history.push(`/profile/chatRooms/${_id}`)}
+        >
+          Enter to Chat
+        </Button>
       </CardActions>
     </Card>
   );
