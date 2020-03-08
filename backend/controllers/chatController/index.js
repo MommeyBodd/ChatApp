@@ -16,14 +16,29 @@ const createChatRoomController = async (req, res, next) => {
       { $push: { participation: createdChatRoom._id } }
     );
 
-    console.log(createdChatRoom);
-
     res.json(createdChatRoom);
   } catch (error) {
     console.log(error);
   }
 };
 
+const getChatRoomInfo = async (req, res, next) => {
+  try {
+    const { chatId } = req.query;
+
+    const foundChat = await Chat.findOne({ _id: chatId }).populate(
+      "participants"
+    );
+
+    res.json(foundChat);
+  } catch (error) {
+    console.log(error);
+  }
+
+  // const fondedChat = Chat.findOne({_id})
+};
+
 module.exports = {
-  createChatRoomController
+  createChatRoomController,
+  getChatRoomInfo
 };

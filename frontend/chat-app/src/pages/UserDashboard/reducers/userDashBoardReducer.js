@@ -15,7 +15,6 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getUserProfileSuccess](state, { payload }) {
-      console.log(payload);
       return {
         ...state,
         isLoading: false,
