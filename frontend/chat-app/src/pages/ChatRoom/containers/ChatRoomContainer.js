@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import ChatRoom from "../components/ChatRoom";
+import ChatRoom from "../components/ChatRoom/ChatRoom";
 import { getChatRoomInformationStart } from "../actions/chatRoomActions";
 
 const ChatRoomContainer = ({ match }) => {

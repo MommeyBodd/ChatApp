@@ -1,0 +1,9 @@
+.chat-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: minmax(calc(100vh - 64px), auto);
+
+    div {
+      border: 1px solid red
+    }
+}

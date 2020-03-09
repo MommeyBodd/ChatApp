@@ -6,8 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,6 +54,7 @@ const Header = ({ userProfile, onHandleLogout, chatName }) => {
     </div>
   );
 };
+
 Header.defaultProps = {
   userProfile: {}
 };
