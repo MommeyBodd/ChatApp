@@ -5,3 +5,5 @@ export const getChatInfo = chatId =>
 
 export const getAvailableUsers = currentUserId =>
   api.get(`/user/getAllUsers:?currentUserId=${currentUserId}`);
+
+export const inviteUser = body => api.post(`/chat/inviteUser`, body);

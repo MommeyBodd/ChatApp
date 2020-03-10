@@ -26,6 +26,15 @@ export default handleActions(
     },
     [actions.getAvailableUsersFail](state, { payload }) {
       return { ...state, isLoading: false, errors: payload };
+    },
+    [actions.inviteUserRequest](state, { payload }) {
+      return { ...state, isLoading: true };
+    },
+    [actions.inviteUserSuccess](state, { payload }) {
+      return { ...state, isLoading: false, currentChatRoom: payload };
+    },
+    [actions.inviteUserFail](state, { payload }) {
+      return { ...state, isLoading: false, errors: payload };
     }
   },
   initialState

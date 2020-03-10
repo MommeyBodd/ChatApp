@@ -31,10 +31,20 @@ function* getAvailableUsers(action) {
   }
 }
 
+function* inviteUser(action) {
+  try {
+    const response = yield chatApi.inviteUser(action.payload);
+    yield put(chatActions.inviteUserSuccess(response.data));
+  } catch (error) {
+    yield put(chatActions.inviteUserFail(error.message));
+  }
+}
+
 function* chatRoomSaga() {
   yield takeEvery(userDashBoardActions.createChatRoomRequest, createChatRoom);
   yield takeEvery(chatActions.getChatRoomInformationStart, getChatRoomInfo);
   yield takeEvery(chatActions.getAvailableUsersStart, getAvailableUsers);
+  yield takeEvery(chatActions.inviteUserRequest, inviteUser);
 }
 
 export default chatRoomSaga;

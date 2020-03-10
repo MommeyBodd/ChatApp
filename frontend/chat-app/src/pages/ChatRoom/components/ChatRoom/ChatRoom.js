@@ -6,7 +6,7 @@ import Chat from "../Chat/Chat";
 import ChatMembers from "../ChatMembers/ChatMembers";
 import mockMembers from "../ChatMembers/mockMembers";
 
-const ChatRoom = ({ chatInfo, currentUser, userList }) => {
+const ChatRoom = ({ chatInfo, currentUser, userList, onHandleUserInvite }) => {
   const {
     _id,
     chatName,
@@ -28,6 +28,8 @@ const ChatRoom = ({ chatInfo, currentUser, userList }) => {
             creatorId={creatorId}
             creatorAvatar={avatar}
             userList={userList}
+            chatId={_id}
+            onHandleUserInvite={onHandleUserInvite}
           />
         </div>
         <div className="chat-area">
@@ -39,6 +41,12 @@ const ChatRoom = ({ chatInfo, currentUser, userList }) => {
   );
 };
 
-ChatRoom.propTypes = {};
+ChatRoom.propTypes = {
+  onHandleUserInvite: PropTypes.func
+};
+
+ChatRoom.defaultProps = {
+  chatInfo: {}
+};
 
 export default ChatRoom;

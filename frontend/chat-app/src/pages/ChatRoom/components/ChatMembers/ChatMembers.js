@@ -8,7 +8,13 @@ import StarsIcon from "@material-ui/icons/Stars";
 import "./members.scss";
 import InviteModal from "../InviteModal/InviteModal";
 
-const ChatMembers = ({ members, creatorId, userList }) => {
+const ChatMembers = ({
+  members,
+  creatorId,
+  userList,
+  chatId,
+  onHandleUserInvite
+}) => {
   // const ownerId = useSelector(state => )
   return (
     <div className="members-container">
@@ -35,7 +41,11 @@ const ChatMembers = ({ members, creatorId, userList }) => {
         ))}
       </div>
       <div className="add-button">
-        <InviteModal userList={userList} />
+        <InviteModal
+          userList={userList}
+          chatId={chatId}
+          onSubmit={onHandleUserInvite}
+        />
       </div>
     </div>
   );

@@ -8,32 +8,30 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { makeStyles } from "@material-ui/core/styles";
-import { useSelector, useDispatch } from "react-redux";
 import AddIcon from "@material-ui/icons/Add";
 
-const InviteModal = ({ userList }) => {
+const InviteModal = ({ userList, chatId, onSubmit }) => {
   const [open, setOpen] = useState(false);
-  const [testVal, setVal] = useState(null);
-
   const [inviteForm, changeField] = useState({
-    chatName: "",
-    usersToInvite: userList,
-    creatorId: ""
+    chatId: chatId,
+    usersToInvite: []
   });
 
-  // console.log(inviteForm.usersToInvite);
+  useEffect(() => {
+    changeField({ ...inviteForm, chatId: chatId });
+  }, [chatId]);
 
   const handleClose = useCallback(() => {
     setOpen(false);
-    changeField({ ...inviteForm, chatName: "" });
+    changeField({ ...inviteForm, usersToInvite: [] });
   }, []);
 
   const handleClickOpen = useCallback(() => {
     setOpen(true);
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = formValues => {
+    onSubmit(formValues);
     setOpen(false);
   };
 
@@ -52,33 +50,30 @@ const InviteModal = ({ userList }) => {
         <DialogContent>
           <DialogContentText>Invite Your Friends</DialogContentText>
           <Autocomplete
+            onChange={(event, value) =>
+              changeField({ ...inviteForm, usersToInvite: value })
+            }
             multiple
             id="tags-outlined"
-            options={inviteForm.usersToInvite}
+            options={userList}
             getOptionLabel={option => option.userName}
             // defaultValue={[top100Films[13]]}
             filterSelectedOptions
-            getOptionSelected={option => console.log(option)}
-            renderInput={params => {
-              // console.log(params);
-              return (
-                <TextField
-                  {...params}
-                  // onChange={event => console.log(event.target.value)}
-                  // onMouseDown={event => console.log(event.target)}
-                  variant="outlined"
-                  label="filterSelectedOptions"
-                  placeholder="Favorites"
-                />
-              );
-            }}
+            renderInput={params => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="Start typing"
+                placeholder="Favorites"
+              />
+            )}
           />
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => handleSubmit()}
+            onClick={() => handleSubmit(inviteForm)}
             color="primary"
-            disabled={inviteForm.chatName.trim() === ""}
+            disabled={inviteForm.usersToInvite.length === 0}
           >
             Create
           </Button>

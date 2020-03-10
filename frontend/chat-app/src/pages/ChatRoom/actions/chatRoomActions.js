@@ -15,3 +15,7 @@ export const getAvailableUsersSuccess = createAction(
   "GET_AVAILABLE_USERS_SUCCESS"
 );
 export const getAvailableUsersFail = createAction("GET_AVAILABLE_USERS_FAIL");
+
+export const inviteUserRequest = createAction("INVITE_USER_REQUEST");
+export const inviteUserSuccess = createAction("INVITE_USER_SUCCESS");
+export const inviteUserFail = createAction("INVITE_USER_FAIL");
