@@ -17,6 +17,19 @@ const getUserProfile = async (req, res, next) => {
   }
 };
 
+const getAllUsers = async (req, res, next) => {
+  try {
+    const { currentUserId } = req.query;
+
+    const foundUsers = await User.find({ _id: { $nin: currentUserId } });
+
+    res.json(foundUsers);
+  } catch (error) {
+    next(createError(error));
+  }
+};
+
 module.exports = {
-  getUserProfile
+  getUserProfile,
+  getAllUsers
 };

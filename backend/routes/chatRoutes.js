@@ -8,6 +8,6 @@ router.post(
   chatRoomController.createChatRoomController
 );
 
-router.get("/getChatRoomInfo/:chatID", chatRoomController.getChatRoomInfo);
+router.get("/getChatRoomInfo:chatID", chatRoomController.getChatRoomInfo);
 
 module.exports = router;

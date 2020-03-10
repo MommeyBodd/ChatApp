@@ -9,3 +9,9 @@ export const getChatRoomInformationSuccess = createAction(
 export const getChatRoomInformationFail = createAction(
   "GET_CHAT_ROOM_INFORMATION_FAIL"
 );
+
+export const getAvailableUsersStart = createAction("GET_AVAILABLE_USERS_START");
+export const getAvailableUsersSuccess = createAction(
+  "GET_AVAILABLE_USERS_SUCCESS"
+);
+export const getAvailableUsersFail = createAction("GET_AVAILABLE_USERS_FAIL");

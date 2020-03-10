@@ -7,6 +7,7 @@ import mockMessages from "./mockMessages";
 import SendIcon from "@material-ui/icons/Send";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import Button from "@material-ui/core/Button";
+import Message from "../Message/Message";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,18 +29,13 @@ const Chat = ({ messages }) => {
               display: "flex",
               justifyContent: message.incoming ? "flex-start" : "flex-end"
             }}
+            key={index}
           >
-            <div
-              key={index}
-              style={{
-                maxWidth: 200
-              }}
-            >
-              {message.text}
-            </div>
+            <Message text={message.text} isIncoming={message.incoming} />
           </div>
         ))}
       </div>
+      {/*<div></div>*/}
       <div className="input-area">
         <Button onClick={() => console.log(1)} color="primary">
           <AttachFileIcon />

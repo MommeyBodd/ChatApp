@@ -15,18 +15,26 @@ function* createChatRoom(action) {
 
 function* getChatRoomInfo(action) {
   try {
-    console.log(action.payload);
     const response = yield chatApi.getChatInfo(action.payload);
-    console.log(response);
     yield put(chatActions.getChatRoomInformationSuccess(response.data));
   } catch (error) {
     yield put(chatActions.getChatRoomInformationFail(error.message));
   }
 }
 
+function* getAvailableUsers(action) {
+  try {
+    const response = yield chatApi.getAvailableUsers(action.payload);
+    yield put(chatActions.getAvailableUsersSuccess(response.data));
+  } catch (error) {
+    yield put(chatActions.getAvailableUsersFail(error.message));
+  }
+}
+
 function* chatRoomSaga() {
   yield takeEvery(userDashBoardActions.createChatRoomRequest, createChatRoom);
   yield takeEvery(chatActions.getChatRoomInformationStart, getChatRoomInfo);
+  yield takeEvery(chatActions.getAvailableUsersStart, getAvailableUsers);
 }
 
 export default chatRoomSaga;

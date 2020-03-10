@@ -2,13 +2,13 @@ const Chat = require("../../models/chatModel");
 const User = require("../../models/userModel");
 const createChatRoomController = async (req, res, next) => {
   try {
-    const { chatName, creatorName, creatorId, _id } = req.body;
+    const { chatName, creatorName, creatorId } = req.body;
 
     const createdChatRoom = await new Chat({
       chatName,
       creatorName,
       creatorId,
-      participants: [_id]
+      participants: [creatorId]
     }).save();
 
     await User.findOneAndUpdate(
