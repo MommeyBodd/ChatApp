@@ -45,6 +45,7 @@ const ChatMembers = ({
           userList={userList}
           chatId={chatId}
           onSubmit={onHandleUserInvite}
+          members={members}
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ const chatSchema = new Schema({
   creatorId: String,
   creatorName: String,
   participants: [{ type: Schema.Types.String, ref: "User" }],
-  messages: [Object]
+  messages: [{ type: Schema.Types.Object }]
 });
 
 const Chat = mongoose.model("Chat", chatSchema, "participation");

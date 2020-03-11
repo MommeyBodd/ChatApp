@@ -11,6 +11,9 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
+const Message = require("./models/messageModle");
+const Chat = require("./models/chatModel");
+const User = require("./models/userModel");
 
 const PORT = 3001;
 
@@ -34,12 +37,41 @@ app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 
-// io.on("connection", socket => {
-//   console.log("a user connected");
-//
-//   socket.on("disconnect", () => {
-//     console.log("user disconnected");
-//   });
-// });
+io.on("connection", socket => {
+  console.log(socket.id);
+
+  socket.on("SEND_MESSAGE", async data => {
+    try {
+      const { authorId, authorName, authorAvatar, chatId, message } = data;
+      // console.log(authorId, chatId, message);
+
+      const sendMessage = await new Message({
+        authorId,
+        authorName,
+        authorAvatar,
+        chatId,
+        messageText: message
+      }).save();
+
+      await Chat.findOneAndUpdate(
+        { _id: chatId },
+        { $push: { messages: sendMessage } }
+      );
+
+      console.log(sendMessage);
+      io.emit("RECEIVE_MESSAGE", sendMessage);
+
+      // const foundedMessage = await Message.find({
+      //   _id: sendMessage._id
+      // });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
 
 http.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));

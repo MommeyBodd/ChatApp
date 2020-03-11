@@ -4,9 +4,15 @@ import "./chatRoom.scss";
 import Header from "../../../../commonComponents/NavBar/Header";
 import Chat from "../Chat/Chat";
 import ChatMembers from "../ChatMembers/ChatMembers";
-import mockMembers from "../ChatMembers/mockMembers";
 
-const ChatRoom = ({ chatInfo, currentUser, userList, onHandleUserInvite }) => {
+const ChatRoom = ({
+  chatInfo,
+  currentUser,
+  userList,
+  onHandleUserInvite,
+  sendMessage,
+  chatRoomMessages
+}) => {
   const {
     _id,
     chatName,
@@ -18,6 +24,7 @@ const ChatRoom = ({ chatInfo, currentUser, userList, onHandleUserInvite }) => {
 
   const { avatar } = currentUser;
 
+  console.log(chatRoomMessages);
   return (
     <>
       <Header chatName={chatName} />
@@ -33,7 +40,11 @@ const ChatRoom = ({ chatInfo, currentUser, userList, onHandleUserInvite }) => {
           />
         </div>
         <div className="chat-area">
-          <Chat messages={messages} />
+          <Chat
+            messages={chatRoomMessages}
+            sendMessage={sendMessage}
+            currentUserId={currentUser._id}
+          />
         </div>
         <div className="smth-area"></div>
       </div>

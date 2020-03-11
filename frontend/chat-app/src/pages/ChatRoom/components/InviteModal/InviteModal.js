@@ -9,8 +9,9 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import AddIcon from "@material-ui/icons/Add";
+import { filterUsersToInvite } from "../../../../utils/chatUtils";
 
-const InviteModal = ({ userList, chatId, onSubmit }) => {
+const InviteModal = ({ userList, chatId, onSubmit, members }) => {
   const [open, setOpen] = useState(false);
   const [inviteForm, changeField] = useState({
     chatId: chatId,
@@ -50,12 +51,13 @@ const InviteModal = ({ userList, chatId, onSubmit }) => {
         <DialogContent>
           <DialogContentText>Invite Your Friends</DialogContentText>
           <Autocomplete
+            noOptionsText={"There is no available users to invite..."}
             onChange={(event, value) =>
               changeField({ ...inviteForm, usersToInvite: value })
             }
             multiple
             id="tags-outlined"
-            options={userList}
+            options={filterUsersToInvite(userList, members)}
             getOptionLabel={option => option.userName}
             // defaultValue={[top100Films[13]]}
             filterSelectedOptions
