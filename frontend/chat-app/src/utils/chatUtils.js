@@ -6,4 +6,7 @@ export const filterUsersToInvite = (usersToInvite, chatMembers) =>
 export const isIncomingMessageCheck = (currentUserId, messageOwner) =>
   currentUserId !== messageOwner;
 
-export const validateInputValue = value => value.trim() === "";
+export const validateInputValue = value => {
+  const optimizedValue = value.trim();
+  return optimizedValue === "" || optimizedValue.length > 500;
+};

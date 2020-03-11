@@ -24,7 +24,6 @@ const ChatRoom = ({
 
   const { avatar } = currentUser;
 
-  console.log(chatRoomMessages);
   return (
     <>
       <Header chatName={chatName} />
@@ -35,6 +34,7 @@ const ChatRoom = ({
             creatorId={creatorId}
             creatorAvatar={avatar}
             userList={userList}
+            currentUserId={currentUser._id}
             chatId={_id}
             onHandleUserInvite={onHandleUserInvite}
           />

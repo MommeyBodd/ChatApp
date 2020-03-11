@@ -56,13 +56,14 @@
     justify-content: center;
     //border: 1px solid red;
     align-self: center;
-    transition: 0.3s;
+    transition: 0.2s;
     height: 70px;
     width: 70px;
     cursor: pointer;
     border-radius: 50%;
       &:hover {
-        background-color: #8ad5f5;
+        background-color: #e3fff7;
+        //border: 2px solid #182d44;
       }
   }
 

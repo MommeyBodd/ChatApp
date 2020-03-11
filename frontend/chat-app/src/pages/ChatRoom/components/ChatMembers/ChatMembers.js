@@ -13,7 +13,8 @@ const ChatMembers = ({
   creatorId,
   userList,
   chatId,
-  onHandleUserInvite
+  onHandleUserInvite,
+  currentUserId
 }) => {
   // const ownerId = useSelector(state => )
   return (

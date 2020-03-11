@@ -17,11 +17,11 @@
     }
 
   .message-main-area {
-    border: 1px solid #009ddf;
+    background-color: #baffbb;
     border-radius: 50px;
     display: flex;
     align-items: center;
-    padding: 5px 20px 5px 5px;
+    padding: 5px 10px 5px 5px;
       .avatar {
         height: 30px;
         width: 30px;
@@ -31,19 +31,22 @@
       }
 
       .message {
-        max-width: 176px;
+        max-width: 250px;
         align-self: flex-start;
-        padding: 5px;
+        padding: 15px;
 
         &.incoming {
           padding: 0 13px;
+          max-width: 176px;
+          //padding: 5px
         }
       }
 
     &.incoming {
-      background-color: #3f51b5;
+      background-color: #182d44;
       color: #fff;
       border: none;
+      padding: 5px;
     }
   }
 }

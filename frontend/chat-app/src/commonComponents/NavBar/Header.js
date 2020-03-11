@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   bar: {
-    backgroundColor: "#009ddf"
+    backgroundColor: "#182d44"
   },
   title: {
     flexGrow: 1
