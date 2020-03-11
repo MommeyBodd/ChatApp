@@ -26,7 +26,7 @@ const createChatRoomController = async (req, res, next) => {
 
 const getChatRoomInfo = async (req, res, next) => {
   try {
-    const { chatId } = req.query;
+    const { chatId } = req.params;
 
     const foundChat = await Chat.findOne({ _id: chatId }).populate(
       "participants"

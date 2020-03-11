@@ -19,7 +19,7 @@ const getUserProfile = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const { currentUserId } = req.query;
+    const { currentUserId } = req.params;
 
     const foundUsers = await User.find({ _id: { $nin: currentUserId } });
 

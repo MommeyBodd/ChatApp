@@ -5,3 +5,5 @@ export const filterUsersToInvite = (usersToInvite, chatMembers) =>
 
 export const isIncomingMessageCheck = (currentUserId, messageOwner) =>
   currentUserId !== messageOwner;
+
+export const validateInputValue = value => value.trim() === "";
