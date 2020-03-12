@@ -38,12 +38,11 @@ app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 
 io.on("connection", socket => {
-  // console.log(socket.id);
+  console.log("New client connected");
 
   socket.on("SEND_MESSAGE", async data => {
     try {
       const { authorId, authorName, authorAvatar, chatId, message } = data;
-      // console.log(authorId, chatId, message);
 
       const sendMessage = await new Message({
         authorId,
@@ -58,12 +57,7 @@ io.on("connection", socket => {
         { $push: { messages: sendMessage } }
       );
 
-      // console.log(sendMessage);
       io.emit("RECEIVE_MESSAGE", sendMessage);
-
-      // const foundedMessage = await Message.find({
-      //   _id: sendMessage._id
-      // });
     } catch (error) {
       console.log(error);
     }

@@ -2,7 +2,11 @@ const { isAuthenticated } = require("../middlewares/isAuthenticatedMiddleware");
 const chatRoomController = require("../controllers/chatController/index");
 const router = require("express").Router();
 
-router.get("/getChatRoomInfo/:chatId", chatRoomController.getChatRoomInfo);
+router.get(
+  "/getChatRoomInfo/:chatId",
+  // isAuthenticated,
+  chatRoomController.getChatRoomInfo
+);
 
 router.post(
   "/createChatRoom",

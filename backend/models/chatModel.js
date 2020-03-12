@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const chatSchema = new Schema({
-  chatName: { type: String, require: true },
-  creatorId: String,
-  creatorName: String,
+  chatName: { type: String, required: true },
+  creatorId: { type: String, required: true },
+  creatorName: { type: String, required: true },
   participants: [{ type: Schema.Types.String, ref: "User" }],
   messages: [{ type: Schema.Types.Object }]
 });

@@ -46,8 +46,6 @@ const addUserToChat = async (req, res, next) => {
     const usersToInviteIds = usersToInvite.map(user => user._id);
     const chat = await Chat.find({ _id: chatId });
 
-    console.log("CHAT", chat);
-
     await Chat.findOneAndUpdate(
       { _id: chatId },
       { $push: { participants: { $each: usersToInviteIds } } }
@@ -63,9 +61,6 @@ const addUserToChat = async (req, res, next) => {
     );
 
     res.json(updatedChat);
-
-    // console.log("USERS", updatedUsers);
-    console.log("UPDATED_CHAT", updatedChat);
   } catch (error) {
     next(createError(error));
   }

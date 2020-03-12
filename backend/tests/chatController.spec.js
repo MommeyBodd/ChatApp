@@ -4,7 +4,6 @@ const app = require("../app");
 
 describe("CHAT_CONTROLLER", () => {
   let connection;
-  let token;
 
   beforeAll(async () => {
     connection = await MongoClient.connect(
@@ -22,20 +21,41 @@ describe("CHAT_CONTROLLER", () => {
   });
 
   describe("POST /chat/createChatRoom", () => {
-    const body = { chatName: "asd", creatorName: "qwe", creatorId: "1231231" };
-
     test("should return created room with containing fields provided in request body", async () => {
+      const body = {
+        chatName: "asd",
+        creatorName: "qwe",
+        creatorId: "1231231"
+      };
       await request(app)
         .post("/chat/createChatRoom")
         .send(body)
         .expect(200)
         .then(response => {
           expect(response.body).toMatchObject({
-            chatName: "aasd",
+            chatName: "asd",
             creatorName: "qwe",
             creatorId: "1231231"
           });
         });
     });
+
+    test("should return error if one of request body fields is invalid", async () => {
+      const body = {
+        chatName: "",
+        creatorName: "qwe",
+        creatorId: "1231231"
+      };
+      await request(app)
+        .post("/chat/createChatRoom")
+        .send(body)
+        .expect(500);
+    });
   });
+
+  // describe("GET /getChatRoomInfo/:chatId", () => {
+  //   test("should return object with info about chat", async () => {
+  //
+  //   });
+  // });
 });
