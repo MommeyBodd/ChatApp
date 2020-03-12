@@ -13,7 +13,14 @@ const UserDashBoardLayout = ({
   return (
     <div>
       <Header userProfile={userProfile} onHandleLogout={onHandleLogout} />
-      <div style={{ display: "flex", alignItems: "center", padding: 25 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: 25,
+          flexWrap: "wrap"
+        }}
+      >
         {userChatRooms.map(userChatRoom => (
           <ChatCard chatRoom={userChatRoom} userProfile={userProfile} />
         ))}

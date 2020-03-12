@@ -9,8 +9,9 @@ import {
   inviteUserRequest
 } from "../actions/chatRoomActions";
 import io from "socket.io-client";
+import { logout } from "../../UserDashboard/actions/authActions";
 
-const ChatRoomContainer = ({ match }) => {
+const ChatRoomContainer = ({ match, history }) => {
   const socket = io("http://localhost:3001");
 
   const dispatch = useDispatch();
@@ -37,7 +38,9 @@ const ChatRoomContainer = ({ match }) => {
 
   useEffect(() => {
     socket.on("RECEIVE_MESSAGE", data => {
-      return addMessage([...chatRoomMessages, data]);
+      if (data.chatId === currentChatRoom._id) {
+        return addMessage([...chatRoomMessages, data]);
+      }
     });
   }, [chatRoomMessages]);
 
@@ -58,6 +61,7 @@ const ChatRoomContainer = ({ match }) => {
     dispatch(inviteUserRequest(payload));
   }, []);
 
+  const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);
   // console.log(chatRoomMessages);
 
   return (
@@ -68,6 +72,7 @@ const ChatRoomContainer = ({ match }) => {
       userList={availableUsers}
       onHandleUserInvite={onHandleUserInvite}
       sendMessage={sendMessage}
+      onHandleLogout={onHandleLogout}
     />
   );
 };

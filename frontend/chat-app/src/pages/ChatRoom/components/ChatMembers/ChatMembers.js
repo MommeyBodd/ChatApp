@@ -19,15 +19,13 @@ const ChatMembers = ({
   // const ownerId = useSelector(state => )
   return (
     <div className="members-container">
-      {/*<div className="creator-area">*/}
-      {/*  <div*/}
-      {/*    className="creator-avatar"*/}
-      {/*    style={{ backgroundImage: `url(${creatorAvatar})` }}*/}
-      {/*  />*/}
-      {/*</div>*/}
       <div className="members-area">
         {members.map(member => (
-          <div className="member">
+          <div
+            className={`member ${
+              currentUserId === member._id ? "current" : ""
+            }`}
+          >
             <div
               className="avatar"
               style={{ backgroundImage: `url(${member.avatar})` }}

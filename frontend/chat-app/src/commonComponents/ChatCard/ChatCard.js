@@ -17,8 +17,10 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 345,
-    marginRight: 15
+    maxWidth: 325,
+    width: "100%",
+    marginRight: 15,
+    marginBottom: 15
   },
   media: {
     height: 0,
@@ -38,16 +40,16 @@ const useStyles = makeStyles(theme => ({
 
 const ChatCard = ({ userProfile, chatRoom }) => {
   const history = useHistory();
-  const { avatar, googleId } = userProfile;
+  const { googleId } = userProfile;
   const { chatName, creatorName, creatorId, _id } = chatRoom;
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" style={{ background: `url${avatar}` }} />
-        }
+        // avatar={
+        //   <Avatar aria-label="recipe" style={{ background: `url${avatar}` }} />
+        // }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />

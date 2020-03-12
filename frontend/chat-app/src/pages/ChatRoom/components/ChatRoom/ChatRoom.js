@@ -11,7 +11,8 @@ const ChatRoom = ({
   userList,
   onHandleUserInvite,
   sendMessage,
-  chatRoomMessages
+  chatRoomMessages,
+  onHandleLogout
 }) => {
   const {
     _id,
@@ -26,7 +27,7 @@ const ChatRoom = ({
 
   return (
     <>
-      <Header chatName={chatName} />
+      <Header chatName={chatName} onHandleLogout={onHandleLogout} />
       <div className="chat-container">
         <div className="members-area">
           <ChatMembers

@@ -21,7 +21,7 @@
   .members-area {
     max-height: 500px;
     overflow-y: auto;
-    border: 1px solid red;
+    background-color: #fff3cc;
     padding: 10px;
     border-radius: 10px;
 
@@ -29,6 +29,11 @@
       display: flex;
       align-items: center;
       padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
 
       .avatar {
         height: 30px;
@@ -45,6 +50,9 @@
       .star-icon {
         align-self: flex-end;
         margin-left: 10px;
+      }
+      &.current {
+        background-color: #cfe6ff;
       }
     }
     margin-bottom: 20px;

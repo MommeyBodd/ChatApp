@@ -47,7 +47,7 @@ const InviteModal = ({ userList, chatId, onSubmit, members }) => {
         aria-labelledby="form-dialog-title"
         fullWidth={100}
       >
-        <DialogTitle id="form-dialog-title">Invite Modal</DialogTitle>
+        <DialogTitle id="form-dialog-title">Invite Members</DialogTitle>
         <DialogContent>
           <DialogContentText>Invite Your Friends</DialogContentText>
           <Autocomplete
@@ -77,7 +77,7 @@ const InviteModal = ({ userList, chatId, onSubmit, members }) => {
             color="primary"
             disabled={inviteForm.usersToInvite.length === 0}
           >
-            Create
+            +Add Member
           </Button>
         </DialogActions>
       </Dialog>
