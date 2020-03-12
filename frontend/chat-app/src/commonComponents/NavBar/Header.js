@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Header = ({ userProfile, onHandleLogout, chatName }) => {
-  const { userName, userEmail, avatar } = userProfile;
+  const { userName } = userProfile;
   const classes = useStyles();
   const history = useHistory();
 
