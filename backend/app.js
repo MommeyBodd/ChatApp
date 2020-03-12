@@ -38,7 +38,7 @@ app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 
 io.on("connection", socket => {
-  console.log(socket.id);
+  // console.log(socket.id);
 
   socket.on("SEND_MESSAGE", async data => {
     try {
@@ -58,7 +58,7 @@ io.on("connection", socket => {
         { $push: { messages: sendMessage } }
       );
 
-      console.log(sendMessage);
+      // console.log(sendMessage);
       io.emit("RECEIVE_MESSAGE", sendMessage);
 
       // const foundedMessage = await Message.find({
@@ -75,3 +75,5 @@ io.on("connection", socket => {
 });
 
 http.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
+
+module.exports = app;
