@@ -4,6 +4,7 @@ import "./chatRoom.scss";
 import Header from "../../../../commonComponents/NavBar/Header";
 import Chat from "../Chat/Chat";
 import ChatMembers from "../ChatMembers/ChatMembers";
+import { Spinner } from "../../../../commonComponents/Spinner/Spinner";
 
 const ChatRoom = ({
   chatInfo,
@@ -20,35 +21,43 @@ const ChatRoom = ({
     creatorName,
     creatorId,
     participants,
-    messages
+    messages,
+    isLoading
   } = chatInfo;
 
   const { avatar } = currentUser;
 
   return (
     <>
-      <Header chatName={chatName} onHandleLogout={onHandleLogout} />
-      <div className="chat-container">
-        <div className="members-area">
-          <ChatMembers
-            members={participants}
-            creatorId={creatorId}
-            creatorAvatar={avatar}
-            userList={userList}
-            currentUserId={currentUser._id}
-            chatId={_id}
-            onHandleUserInvite={onHandleUserInvite}
-          />
-        </div>
-        <div className="chat-area">
-          <Chat
-            messages={chatRoomMessages}
-            sendMessage={sendMessage}
-            currentUserId={currentUser._id}
-          />
-        </div>
-        <div className="smth-area"></div>
-      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Header chatName={chatName} onHandleLogout={onHandleLogout} />
+
+          <div className="chat-container">
+            <div className="members-area">
+              <ChatMembers
+                members={participants}
+                creatorId={creatorId}
+                creatorAvatar={avatar}
+                userList={userList}
+                currentUserId={currentUser._id}
+                chatId={_id}
+                onHandleUserInvite={onHandleUserInvite}
+              />
+            </div>
+            <div className="chat-area">
+              <Chat
+                messages={chatRoomMessages}
+                sendMessage={sendMessage}
+                currentUserId={currentUser._id}
+              />
+            </div>
+            <div className="smth-area"></div>
+          </div>
+        </>
+      )}
     </>
   );
 };

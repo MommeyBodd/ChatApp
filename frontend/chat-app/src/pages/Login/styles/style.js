@@ -22,13 +22,11 @@ export const useStyles = makeStyles(() => ({
     height: 250,
     borderRadius: "50%",
     fontSize: 25,
-    // backgroundColor: "#a5cc6e",
     backgroundColor: "#4bbae7",
     border: "solid 3px",
     transition: ".2s",
     "&:hover": {
       backgroundColor: "#4bbae7",
-      // boxShadow: "0 0 19px 0px #757069",
       fontSize: 30
     }
   }

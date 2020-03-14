@@ -7,6 +7,7 @@ import { getUserProfileStart } from "../actions/userDashBoardActions";
 import queryString from "query-string";
 import { logout } from "../actions/authActions";
 import socketIOClient from "socket.io-client";
+import { Spinner } from "../../../commonComponents/Spinner/Spinner";
 
 const UserDashboardContainer = ({ location, history }) => {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ const UserDashboardContainer = ({ location, history }) => {
 
   const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     isAuth && (
       <UserDashBoardLayout
         userProfile={userProfile}

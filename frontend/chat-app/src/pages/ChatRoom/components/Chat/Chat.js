@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import "./chat.scss";
-import mockMessages from "./mockMessages";
 import SendIcon from "@material-ui/icons/Send";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import Button from "@material-ui/core/Button";
@@ -36,7 +35,6 @@ const Chat = ({ messages, sendMessage, currentUserId }) => {
 
   const handleSubmit = useCallback(
     event => {
-      console.log(event.ctrlKey, event.keyCode === 13);
       event.preventDefault();
       sendMessage(inputValue);
       setValue("");

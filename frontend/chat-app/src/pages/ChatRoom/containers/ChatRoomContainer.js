@@ -17,7 +17,7 @@ const ChatRoomContainer = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.userDashBoard.userProfile);
-  const { currentChatRoom, availableUsers } = useSelector(
+  const { currentChatRoom, availableUsers, isLoading } = useSelector(
     state => state.chatRoom
   );
 
@@ -67,7 +67,7 @@ const ChatRoomContainer = ({ match, history }) => {
   return (
     <ChatRoom
       chatRoomMessages={chatRoomMessages}
-      chatInfo={currentChatRoom}
+      chatInfo={{ ...currentChatRoom, isLoading }}
       currentUser={currentUser}
       userList={availableUsers}
       onHandleUserInvite={onHandleUserInvite}

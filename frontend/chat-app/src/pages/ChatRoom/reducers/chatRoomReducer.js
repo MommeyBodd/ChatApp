@@ -13,7 +13,7 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getChatRoomInformationSuccess](state, { payload }) {
-      return { ...state, isLoading: false, currentChatRoom: payload };
+      return { ...state, currentChatRoom: payload, isLoading: false };
     },
     [actions.getChatRoomInformationFail](state, { payload }) {
       return { ...state, isLoading: false, errors: payload };
@@ -22,7 +22,7 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.getAvailableUsersSuccess](state, { payload }) {
-      return { ...state, isLoading: false, availableUsers: payload };
+      return { ...state, availableUsers: payload, isLoading: false };
     },
     [actions.getAvailableUsersFail](state, { payload }) {
       return { ...state, isLoading: false, errors: payload };
@@ -31,7 +31,7 @@ export default handleActions(
       return { ...state, isLoading: true };
     },
     [actions.inviteUserSuccess](state, { payload }) {
-      return { ...state, isLoading: false, currentChatRoom: payload };
+      return { ...state, currentChatRoom: payload, isLoading: false };
     },
     [actions.inviteUserFail](state, { payload }) {
       return { ...state, isLoading: false, errors: payload };

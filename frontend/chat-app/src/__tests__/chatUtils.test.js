@@ -2,7 +2,7 @@ import {
   isIncomingMessageCheck,
   validateInputValue,
   filterUsersToInvite
-} from "../chatUtils";
+} from "../utils/chatUtils";
 
 describe("Utils tests", () => {
   describe("isIncomingMessageCheck", () => {
@@ -27,7 +27,7 @@ describe("Utils tests", () => {
       ).toHaveLength(0);
     });
 
-    test("should array of objects which not contained in another array", () => {
+    test("should return array of objects which not contained in another array", () => {
       const mockUsersToInvite = [
         { _id: 1, userName: "Adrik" },
         { _id: 2, userName: "Adrik" },
@@ -37,6 +37,7 @@ describe("Utils tests", () => {
         { _id: 1, userName: "Adrik" },
         { _id: 2, userName: "Adrik" }
       ];
+
       expect(filterUsersToInvite(mockUsersToInvite, mockChatMembers)).toEqual([
         { _id: 3, userName: "Adrik" }
       ]);

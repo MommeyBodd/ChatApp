@@ -47,14 +47,6 @@ const ChatCard = ({ userProfile, chatRoom }) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        // avatar={
-        //   <Avatar aria-label="recipe" style={{ background: `url${avatar}` }} />
-        // }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         title={`${chatName}`}
         subheader={`Creator: ${creatorName} ${
           googleId === creatorId ? "(You)" : ""
@@ -63,7 +55,7 @@ const ChatCard = ({ userProfile, chatRoom }) => {
       <CardMedia
         className={classes.media}
         image={`${chatImage}`}
-        title="Paella dish"
+        title="Chat Room"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
