@@ -59,7 +59,6 @@ const InviteModal = ({ userList, chatId, onSubmit, members }) => {
             id="tags-outlined"
             options={filterUsersToInvite(userList, members)}
             getOptionLabel={option => option.userName}
-            // defaultValue={[top100Films[13]]}
             filterSelectedOptions
             renderInput={params => (
               <TextField
@@ -85,6 +84,11 @@ const InviteModal = ({ userList, chatId, onSubmit, members }) => {
   );
 };
 
-InviteModal.propTypes = {};
+InviteModal.propTypes = {
+  userList: PropTypes.arrayOf(PropTypes.object),
+  chatId: PropTypes.string,
+  onSubmit: PropTypes.func,
+  members: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default React.memo(InviteModal);

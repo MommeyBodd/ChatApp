@@ -15,15 +15,7 @@ const ChatRoom = ({
   chatRoomMessages,
   onHandleLogout
 }) => {
-  const {
-    _id,
-    chatName,
-    creatorName,
-    creatorId,
-    participants,
-    messages,
-    isLoading
-  } = chatInfo;
+  const { _id, chatName, creatorId, participants, isLoading } = chatInfo;
 
   const { avatar } = currentUser;
 
@@ -54,7 +46,6 @@ const ChatRoom = ({
                 currentUserId={currentUser._id}
               />
             </div>
-            <div className="smth-area"></div>
           </div>
         </>
       )}
@@ -63,11 +54,17 @@ const ChatRoom = ({
 };
 
 ChatRoom.propTypes = {
-  onHandleUserInvite: PropTypes.func
+  onHandleUserInvite: PropTypes.func,
+  chatInfo: PropTypes.object,
+  currentUser: PropTypes.object,
+  userList: PropTypes.arrayOf(PropTypes.object),
+  sendMessage: PropTypes.func,
+  chatRoomMessages: PropTypes.arrayOf(PropTypes.object),
+  onHandleLogout: PropTypes.func
 };
 
 ChatRoom.defaultProps = {
   chatInfo: {}
 };
 
-export default ChatRoom;
+export default React.memo(ChatRoom);

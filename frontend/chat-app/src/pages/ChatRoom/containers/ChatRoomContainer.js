@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "lodash";
 import ChatRoom from "../components/ChatRoom/ChatRoom";
@@ -10,9 +9,14 @@ import {
 } from "../actions/chatRoomActions";
 import io from "socket.io-client";
 import { logout } from "../../UserDashboard/actions/authActions";
+import { baseURL } from "../../../config/apiConfig";
+import {
+  RECEIVE_MESSAGE,
+  SEND_MESSAGE
+} from "../../../constants/socketConstants";
 
 const ChatRoomContainer = ({ match, history }) => {
-  const socket = io("http://localhost:3001");
+  const socket = io(baseURL);
 
   const dispatch = useDispatch();
 
@@ -37,7 +41,7 @@ const ChatRoomContainer = ({ match, history }) => {
   }, [currentChatRoom]);
 
   useEffect(() => {
-    socket.on("RECEIVE_MESSAGE", data => {
+    socket.on(RECEIVE_MESSAGE, data => {
       if (data.chatId === currentChatRoom._id) {
         return addMessage([...chatRoomMessages, data]);
       }
@@ -46,7 +50,7 @@ const ChatRoomContainer = ({ match, history }) => {
 
   const sendMessage = useCallback(
     message => {
-      socket.emit("SEND_MESSAGE", {
+      socket.emit(SEND_MESSAGE, {
         authorId: currentUser._id,
         authorName: currentUser.userName,
         authorAvatar: currentUser.avatar,
@@ -62,7 +66,6 @@ const ChatRoomContainer = ({ match, history }) => {
   }, []);
 
   const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);
-  // console.log(chatRoomMessages);
 
   return (
     <ChatRoom
@@ -76,7 +79,5 @@ const ChatRoomContainer = ({ match, history }) => {
     />
   );
 };
-
-ChatRoomContainer.propTypes = {};
 
 export default React.memo(ChatRoomContainer);

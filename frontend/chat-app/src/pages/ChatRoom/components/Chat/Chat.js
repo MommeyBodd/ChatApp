@@ -12,14 +12,6 @@ import {
   validateInputValue
 } from "../../../../utils/chatUtils";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1)
-    }
-  }
-}));
-
 const Chat = ({ messages, sendMessage, currentUserId }) => {
   const [inputValue, setValue] = useState("");
   const refContainer = useRef(null);
@@ -42,10 +34,20 @@ const Chat = ({ messages, sendMessage, currentUserId }) => {
     [inputValue]
   );
 
+  const submitOnEnterPress = useCallback(
+    e => {
+      if (e.keyCode === 13 && e.shiftKey === false) {
+        // e.preventDefault();
+        handleSubmit(e);
+      }
+    },
+    [inputValue]
+  );
+
   return (
     <>
       <div className="messages-area" ref={refContainer}>
-        {messages.map((message, index) => (
+        {messages.map(message => (
           <div
             style={{
               display: "flex",
@@ -56,7 +58,7 @@ const Chat = ({ messages, sendMessage, currentUserId }) => {
                 ? "flex-start"
                 : "flex-end"
             }}
-            key={index}
+            key={message._id}
           >
             <Message
               author={message.authorName}
@@ -85,6 +87,7 @@ const Chat = ({ messages, sendMessage, currentUserId }) => {
             value={inputValue}
             onChange={event => setValue(event.target.value)}
             variant="outlined"
+            onKeyDown={event => submitOnEnterPress(event)}
           />
           <Button
             type="submit"
@@ -107,4 +110,4 @@ Chat.defaultProps = {
   messages: []
 };
 
-export default Chat;
+export default React.memo(Chat);

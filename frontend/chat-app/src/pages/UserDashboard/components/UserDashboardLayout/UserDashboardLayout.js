@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Header from "../../../../commonComponents/NavBar/Header";
 import CreateChatRoomModal from "../CreateChatModal/CreateChatRoomModal";
@@ -7,8 +7,7 @@ import ChatCard from "../../../../commonComponents/ChatCard/ChatCard";
 const UserDashBoardLayout = ({
   userProfile,
   userChatRooms,
-  onHandleLogout,
-  isLoading
+  onHandleLogout
 }) => {
   return (
     <div>
@@ -22,7 +21,11 @@ const UserDashBoardLayout = ({
         }}
       >
         {userChatRooms.map(userChatRoom => (
-          <ChatCard chatRoom={userChatRoom} userProfile={userProfile} />
+          <ChatCard
+            key={userChatRoom._id}
+            chatRoom={userChatRoom}
+            userProfile={userProfile}
+          />
         ))}
         <CreateChatRoomModal />
       </div>
@@ -30,6 +33,10 @@ const UserDashBoardLayout = ({
   );
 };
 
-UserDashBoardLayout.propTypes = {};
+UserDashBoardLayout.propTypes = {
+  userProfile: PropTypes.object,
+  userChatRooms: PropTypes.arrayOf(PropTypes.object),
+  onHandleLogout: PropTypes.func
+};
 
-export default UserDashBoardLayout;
+export default React.memo(UserDashBoardLayout);

@@ -22,4 +22,4 @@ const LoginPage = ({}) => {
 
 LoginPage.propTypes = {};
 
-export default LoginPage;
+export default React.memo(LoginPage);

@@ -5,7 +5,6 @@ import "./styles/index.css";
 import { configureStore } from "./redux/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-// import * as serviceWorker from "./config/serviceWorker";
 import { Routes } from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
 

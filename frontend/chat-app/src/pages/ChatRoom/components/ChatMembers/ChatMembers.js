@@ -1,8 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
-import AddIcon from "@material-ui/icons/Add";
 import StarsIcon from "@material-ui/icons/Stars";
 
 import "./members.scss";
@@ -16,12 +13,12 @@ const ChatMembers = ({
   onHandleUserInvite,
   currentUserId
 }) => {
-  // const ownerId = useSelector(state => )
   return (
     <div className="members-container">
       <div className="members-area">
         {members.map(member => (
           <div
+            key={member._id}
             className={`member ${
               currentUserId === member._id ? "current" : ""
             }`}
@@ -53,11 +50,15 @@ const ChatMembers = ({
 
 ChatMembers.propTypes = {
   members: PropTypes.array,
-  creatorId: PropTypes.string
+  creatorId: PropTypes.string,
+  userList: PropTypes.arrayOf(PropTypes.object),
+  chatId: PropTypes.string,
+  onHandleUserInvite: PropTypes.func,
+  currentUserId: PropTypes.string
 };
 
 ChatMembers.defaultProps = {
   members: []
 };
 
-export default ChatMembers;
+export default React.memo(ChatMembers);

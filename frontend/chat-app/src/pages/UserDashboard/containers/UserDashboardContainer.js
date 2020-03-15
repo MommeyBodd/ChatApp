@@ -1,21 +1,17 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import UserDashBoardLayout from "../components/UserDashboardLayout/UserDashboardLayout";
 import { getUserProfileStart } from "../actions/userDashBoardActions";
 import queryString from "query-string";
 import { logout } from "../actions/authActions";
-import socketIOClient from "socket.io-client";
 import { Spinner } from "../../../commonComponents/Spinner/Spinner";
 
 const UserDashboardContainer = ({ location, history }) => {
   const dispatch = useDispatch();
-  const isAuth = useSelector(state => state.userDashBoard.isAuth);
-  const isLoading = useSelector(state => state.userDashBoard.isLoading);
-  const userProfile = useSelector(state => state.userDashBoard.userProfile);
-  const userChatRooms = useSelector(state => state.userDashBoard.userChatRooms);
-  const socket = socketIOClient("http://localhost:3001");
+
+  const { isAuth, isLoading, userProfile, userChatRooms } = useSelector(
+    state => state.userDashBoard
+  );
 
   useEffect(() => {
     const { token } = queryString.parse(location.search);
@@ -26,8 +22,6 @@ const UserDashboardContainer = ({ location, history }) => {
     const tokenToUse = token || localStorageToken;
 
     dispatch(getUserProfileStart({ token: tokenToUse, history }));
-
-    // socket.on("FromAPI", data => console.log(data));
   }, []);
 
   const onHandleLogout = useCallback(() => dispatch(logout({ history })), []);
@@ -46,6 +40,4 @@ const UserDashboardContainer = ({ location, history }) => {
   );
 };
 
-UserDashboardContainer.propTypes = {};
-
-export default connect(null, null)(React.memo(UserDashboardContainer));
+export default React.memo(UserDashboardContainer);
