@@ -5,13 +5,12 @@ const createError = err => {
       status: err.response.status,
       error: err
     };
-  } else {
-    return {
-      message: err.message || "something went wrong",
-      status: 500,
-      error: err
-    };
   }
+  return {
+    message: err.message || "something went wrong",
+    status: 500,
+    error: err
+  };
 };
 
 module.exports = {

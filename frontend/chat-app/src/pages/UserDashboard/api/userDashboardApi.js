@@ -1,4 +1,4 @@
 import api from "../../../config/apiConfig";
 
-export const getClientProfile = () => api.get("/user/getUserProfile");
-export const createChatRoom = body => api.post("/chat/createChatRoom", body);
+export const getClientProfile = () => api.get("/users/profile");
+export const createChatRoom = body => api.post("/chats", body);

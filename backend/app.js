@@ -34,8 +34,8 @@ mongoose.connect(globalConfig.mongoDB.dbURI, () => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/chat", chatRoutes);
+app.use("/users", userRoutes);
+app.use("/chats", chatRoutes);
 
 io.on("connection", socket => {
   console.log("New client connected");

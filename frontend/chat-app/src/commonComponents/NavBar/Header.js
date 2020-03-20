@@ -13,9 +13,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
   bar: {
     backgroundColor: "#182d44"
   },
@@ -51,7 +48,6 @@ const Header = ({ userProfile, onHandleLogout, chatName }) => {
           <Button color="inherit" onClick={() => onHandleLogout()}>
             Logout
           </Button>
-          <div></div>
         </Toolbar>
       </AppBar>
     </div>

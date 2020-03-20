@@ -1,7 +1,6 @@
 const { verifyGoogleAccessToken } = require("../api/verification");
 
 const isAuthenticated = async (req, res, next) => {
-  console.log(req.headers.authorization);
   try {
     if (process.env.NODE_ENV === "test") {
       next();
