@@ -51,6 +51,7 @@ const Header = ({ userProfile, onHandleLogout, chatName }) => {
           <Button color="inherit" onClick={() => onHandleLogout()}>
             Logout
           </Button>
+          <div></div>
         </Toolbar>
       </AppBar>
     </div>
