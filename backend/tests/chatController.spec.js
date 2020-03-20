@@ -1,9 +1,13 @@
 const { MongoClient } = require("mongodb");
 const request = require("supertest");
 const app = require("../app");
+const Chat = require("../models/chatModel");
+const User = require("../models/userModel");
 
 describe("CHAT_CONTROLLER", () => {
   let connection;
+  let user;
+  let chat;
 
   beforeAll(async () => {
     connection = await MongoClient.connect(
@@ -12,31 +16,56 @@ describe("CHAT_CONTROLLER", () => {
         useNewUrlParser: true
       }
     );
-    // db = await connection.db(global.__MONGO_DB_NAME__);
+
+    user = new User({
+      _id: "123asd123",
+      userName: "Vovchick",
+      googleId: "123asd123",
+      userEmail: "1998adrian98@gmail.com",
+      sentMessages: [],
+      participation: [],
+      avatar: "asgasdg.com"
+    });
+
+    chat = new Chat({
+      chatName: "Test Chat - 1",
+      creatorId: user._id,
+      creatorName: user.userName,
+      participants: [user._id],
+      messages: []
+    });
+
+    await user.save();
+    await chat.save();
   });
 
   afterAll(async () => {
+    await User.findOneAndRemove({ _id: user._id });
+    await Chat.findOneAndRemove({ _id: chat._id });
     await connection.close();
     // await db.close();
   });
 
-  describe("POST /chat/createChatRoom", () => {
-    test("should return created room with containing fields provided in request body", async () => {
+  describe("POST /chats", () => {
+    test("should return created chat with containing fields provided in request body", async () => {
       const body = {
         chatName: "asd",
         creatorName: "qwe",
         creatorId: "1231231"
       };
       await request(app)
-        .post("/chat/createChatRoom")
+        .post("/chats")
         .send(body)
         .expect(200)
-        .then(response => {
+        .then(async response => {
+          const { _id } = response.body;
           expect(response.body).toMatchObject({
             chatName: "asd",
             creatorName: "qwe",
             creatorId: "1231231"
           });
+
+          await Chat.findOneAndRemove({ _id });
         });
     });
 
@@ -47,15 +76,34 @@ describe("CHAT_CONTROLLER", () => {
         creatorId: "1231231"
       };
       await request(app)
-        .post("/chat/createChatRoom")
+        .post("/chats")
         .send(body)
         .expect(500);
     });
   });
 
-  // describe("GET /getChatRoomInfo/:chatId", () => {
-  //   test("should return object with info about chat", async () => {
-  //
-  //   });
-  // });
+  describe("GET /chats/:chatId", () => {
+    test("should return chat by chat id", async () => {
+      await request(app)
+        .get(`/chats/${chat._id}`)
+        .expect(200)
+        .then(async response => {
+          expect(response.body).toMatchObject({
+            chatName: chat.chatName,
+            creatorId: user.userName,
+            creatorId: user._id
+          });
+        });
+    });
+
+    test("should return empty object when chat id doesn't exists", async () => {
+      const fakeChatId = "5e6f36902a3dfb02e1585669";
+      await request(app)
+        .get(`/chats/${fakeChatId}`)
+        .expect(200)
+        .then(async response => {
+          expect(response.body).toEqual(null);
+        });
+    });
+  });
 });
