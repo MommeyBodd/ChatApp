@@ -23,7 +23,6 @@ describe("Header UI testing", () => {
         userProfile: {
           userName: "asd"
         },
-        // userProfile: [],
         onHandleLogout: () => {},
         chatName: "Test Chat"
       };
@@ -77,8 +76,8 @@ describe("Header UI testing", () => {
       };
 
       wrapper = shallow(<Header {...expectedProps} />);
-      const chatNameArea = wrapper.find(Typography);
-      const chatName = chatNameArea.text();
+
+      const chatName = wrapper.find(Typography).text();
 
       expect(chatName).toEqual("Test Chat");
     });

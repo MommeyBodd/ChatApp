@@ -1,10 +1,11 @@
 import { handleActions } from "redux-actions";
 import * as actions from "../actions/chatRoomActions";
 
-const initialState = {
+export const initialState = {
   currentChatRoom: {},
   availableUsers: [],
-  errors: null
+  errors: null,
+  isLoading: false
 };
 
 export default handleActions(
