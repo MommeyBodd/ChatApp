@@ -71,8 +71,8 @@ const ChatCard = ({ userProfile, chatRoom }) => {
 };
 
 ChatCard.propTypes = {
-  userProfile: PropTypes.object,
-  chatRoom: PropTypes.object
+  userProfile: PropTypes.object.isRequired,
+  chatRoom: PropTypes.object.isRequired
 };
 
 export default ChatCard;

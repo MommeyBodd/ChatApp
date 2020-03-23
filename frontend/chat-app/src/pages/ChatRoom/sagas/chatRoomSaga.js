@@ -1,4 +1,4 @@
-import { put, takeLatest, takeEvery } from "redux-saga/effects";
+import { put, takeLatest, takeEvery, all, call } from "redux-saga/effects";
 import * as userDashBoardActions from "../../UserDashboard/actions/userDashBoardActions";
 import * as chatActions from "../../ChatRoom/actions/chatRoomActions";
 import * as userDashboardApiCalls from "../../UserDashboard/api/userDashboardApi";
@@ -6,7 +6,10 @@ import * as chatApi from "../../ChatRoom/api/chatApi";
 
 export function* createChatRoom(action) {
   try {
-    const response = yield userDashboardApiCalls.createChatRoom(action.payload);
+    const response = yield call(
+      userDashboardApiCalls.createChatRoom,
+      action.payload
+    );
     yield put(userDashBoardActions.createChatRoomSuccess(response.data));
   } catch (error) {
     yield put(userDashBoardActions.createChatRoomFail(error.message));
@@ -15,10 +18,10 @@ export function* createChatRoom(action) {
 
 export function* getChatRoomInfo(action) {
   try {
-    const response = yield chatApi.getChatInfo(action.payload);
+    const response = yield call(chatApi.getChatInfo, action.payload);
     yield put(chatActions.getChatRoomInformationSuccess(response.data));
   } catch (error) {
-    yield put(chatActions.getChatRoomInformationFail(error.message));
+    yield put(chatActions.getChatRoomInformationFail(error));
   }
 }
 
@@ -27,7 +30,7 @@ export function* getAvailableUsers(action) {
     const response = yield chatApi.getAvailableUsers(action.payload);
     yield put(chatActions.getAvailableUsersSuccess(response.data));
   } catch (error) {
-    yield put(chatActions.getAvailableUsersFail(error.message));
+    yield put(chatActions.getAvailableUsersFail(error));
   }
 }
 
@@ -36,15 +39,33 @@ export function* inviteUser(action) {
     const response = yield chatApi.inviteUser(action.payload);
     yield put(chatActions.inviteUserSuccess(response.data));
   } catch (error) {
-    yield put(chatActions.inviteUserFail(error.message));
+    yield put(chatActions.inviteUserFail(error));
   }
 }
 
-function* chatRoomSaga() {
-  yield takeEvery(chatActions.getChatRoomInformationStart, getChatRoomInfo);
+export function* createChatRoomWatcher() {
   yield takeEvery(userDashBoardActions.createChatRoomRequest, createChatRoom);
+}
+
+export function* getChatRoomInfoWatcher() {
+  yield takeEvery(chatActions.getChatRoomInformationStart, getChatRoomInfo);
+}
+
+export function* getAvailableUsersWatcher() {
   yield takeEvery(chatActions.getAvailableUsersStart, getAvailableUsers);
+}
+
+export function* inviteUserWatcher() {
   yield takeEvery(chatActions.inviteUserRequest, inviteUser);
 }
 
-export default chatRoomSaga;
+function* chatRoomSagas() {
+  yield all([
+    createChatRoomWatcher(),
+    getChatRoomInfoWatcher(),
+    getAvailableUsersWatcher(),
+    inviteUserWatcher()
+  ]);
+}
+
+export default chatRoomSagas;

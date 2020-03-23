@@ -45,7 +45,7 @@ const InviteModal = ({ userList, chatId, onSubmit, members }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        fullWidth={100}
+        // fullWidth={100}
       >
         <DialogTitle id="form-dialog-title">Invite Members</DialogTitle>
         <DialogContent>

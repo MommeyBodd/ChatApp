@@ -4,6 +4,7 @@ import Header from "../Header";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { checkProps } from "../../../utils/testUtils";
+
 jest.mock("react-router-dom", () => ({
   useHistory: () => ({
     push: jest.fn()

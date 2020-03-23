@@ -1,5 +1,4 @@
 import React, { useState, useRef, useLayoutEffect, useCallback } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import "./chat.scss";
@@ -37,7 +36,6 @@ const Chat = ({ messages, sendMessage, currentUserId }) => {
   const submitOnEnterPress = useCallback(
     e => {
       if (e.keyCode === 13 && e.shiftKey === false) {
-        // e.preventDefault();
         handleSubmit(e);
       }
     },

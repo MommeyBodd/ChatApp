@@ -47,6 +47,9 @@ const ChatMembers = ({
     </div>
   );
 };
+ChatMembers.defaultProps = {
+  members: []
+};
 
 ChatMembers.propTypes = {
   members: PropTypes.array,
@@ -55,10 +58,6 @@ ChatMembers.propTypes = {
   chatId: PropTypes.string,
   onHandleUserInvite: PropTypes.func,
   currentUserId: PropTypes.string
-};
-
-ChatMembers.defaultProps = {
-  members: []
 };
 
 export default React.memo(ChatMembers);

@@ -43,7 +43,6 @@ describe("CHAT_CONTROLLER", () => {
     await User.findOneAndRemove({ _id: user._id });
     await Chat.findOneAndRemove({ _id: chat._id });
     await connection.close();
-    // await db.close();
   });
 
   describe("POST /chats", () => {
@@ -90,7 +89,6 @@ describe("CHAT_CONTROLLER", () => {
         .then(async response => {
           expect(response.body).toMatchObject({
             chatName: chat.chatName,
-            creatorId: user.userName,
             creatorId: user._id
           });
         });

@@ -1,7 +1,8 @@
 import { handleActions } from "redux-actions";
 import * as actions from "../actions/userDashBoardActions";
 import * as authActions from "../actions/authActions";
-const initialState = {
+
+export const initialState = {
   isLoading: false,
   isAuth: false,
   userProfile: {},

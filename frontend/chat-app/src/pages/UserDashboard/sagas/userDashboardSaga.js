@@ -1,20 +1,19 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, call } from "redux-saga/effects";
 import * as actions from "../actions/userDashBoardActions";
 import * as userDashboardApi from "../api/userDashboardApi";
 import api from "../../../config/apiConfig";
 import axios from "axios";
 
-function* getUserProfile(action) {
+export function* getUserProfile(action) {
   const { token, history } = action.payload;
   try {
     yield localStorage.removeItem("token");
     yield (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
     yield (api.defaults.headers.common.Authorization = `Bearer ${token}`);
 
-    const response = yield userDashboardApi.getClientProfile();
+    const response = yield call(userDashboardApi.getClientProfile);
 
     const { userProfile } = response.data;
-    console.log(userProfile);
     yield put(actions.getUserProfileSuccess(userProfile));
 
     yield localStorage.setItem(`token`, `Bearer ${token}`);
