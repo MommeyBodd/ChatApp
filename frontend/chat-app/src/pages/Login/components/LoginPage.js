@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { useStyles } from "../styles/style";
-import PropTypes from "prop-types";
 
 const LoginPage = ({}) => {
   const classes = useStyles();
@@ -19,7 +18,5 @@ const LoginPage = ({}) => {
     </div>
   );
 };
-
-LoginPage.propTypes = {};
 
 export default React.memo(LoginPage);

@@ -68,7 +68,7 @@ describe("CHAT_CONTROLLER", () => {
         });
     });
 
-    test("should return error if one of request body fields is invalid", async () => {
+    test("should return 500 if one of request body fields is invalid", async () => {
       const body = {
         chatName: "",
         creatorName: "qwe",
@@ -94,7 +94,7 @@ describe("CHAT_CONTROLLER", () => {
         });
     });
 
-    test("should return empty object when chat id doesn't exists", async () => {
+    test("should return null when chat id doesn't exists", async () => {
       const fakeChatId = "5e6f36902a3dfb02e1585669";
       await request(app)
         .get(`/chats/${fakeChatId}`)

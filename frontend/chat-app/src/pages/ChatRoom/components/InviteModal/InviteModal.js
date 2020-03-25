@@ -45,13 +45,13 @@ const InviteModal = ({ userList, chatId, onSubmit, members }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        // fullWidth={100}
+        fullWidth
       >
         <DialogTitle id="form-dialog-title">Invite Members</DialogTitle>
         <DialogContent>
           <DialogContentText>Invite Your Friends</DialogContentText>
           <Autocomplete
-            noOptionsText={"There is no available users to invite..."}
+            noOptionsText={"There are no available users to invite..."}
             onChange={(event, value) =>
               changeField({ ...inviteForm, usersToInvite: value })
             }

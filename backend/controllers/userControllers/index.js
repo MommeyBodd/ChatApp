@@ -1,6 +1,5 @@
 const { createError } = require("../../services/errorHandling");
 const User = require("../../models/userModel");
-const Chat = require("../../models/chatModel");
 
 const getAllUsers = async (req, res, next) => {
   try {

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Page UI testing should render correctly 1`] = `
+<div
+  className="makeStyles-container-1"
+>
+  <h1
+    className="makeStyles-text-2"
+  >
+    Welcome to the Chat APP!
+  </h1>
+  <WithStyles(ForwardRef(Button))
+    className="makeStyles-button-3"
+    color="secondary"
+    href="http://localhost:3001/auth/google"
+    variant="contained"
+  >
+    GOOGLE+
+  </WithStyles(ForwardRef(Button))>
+</div>
+`;

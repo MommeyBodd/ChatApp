@@ -2,7 +2,7 @@ import {
   isIncomingMessageCheck,
   validateInputValue,
   filterUsersToInvite
-} from "../utils/chatUtils";
+} from "./chatUtils";
 
 describe("Utils tests", () => {
   describe("isIncomingMessageCheck", () => {

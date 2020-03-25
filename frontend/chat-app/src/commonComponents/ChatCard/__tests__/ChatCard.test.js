@@ -42,11 +42,9 @@ describe("Chat Card UI testing", () => {
   });
 
   describe("Renders", () => {
-    let mockFunction;
     let wrapper;
 
     beforeEach(() => {
-      mockFunction = jest.fn();
       const expectedProps = {
         userProfile: {},
         chatRoom: {}

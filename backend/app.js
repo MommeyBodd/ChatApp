@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
-const Message = require("./models/messageModle");
+const Message = require("./models/messageModel");
 const Chat = require("./models/chatModel");
 const User = require("./models/userModel");
 
