@@ -39,14 +39,23 @@ const CreateChatRoomModal = () => {
 
   return (
     <div>
-      <Button
-        variant="outlined"
+      {/*<Button*/}
+      {/*  variant="outlined"*/}
+      {/*  color="primary"*/}
+      {/*  onClick={handleClickOpen}*/}
+      {/*  style={{ height: 185 }}*/}
+      {/*  // onClick={() => setOpen(true)}*/}
+      {/*>*/}
+      {/*  Create Chat Room!*/}
+      {/*</Button>*/}
+      <button
+        className="tet-button"
         color="primary"
-        onClick={handleClickOpen}
         style={{ height: 185 }}
+        onClick={handleClickOpen}
       >
         Create Chat Room!
-      </Button>
+      </button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -83,7 +92,5 @@ const CreateChatRoomModal = () => {
     </div>
   );
 };
-
-CreateChatRoomModal.propTypes = {};
 
 export default React.memo(CreateChatRoomModal);

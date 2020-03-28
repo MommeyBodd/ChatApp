@@ -64,7 +64,7 @@ describe("Header UI testing", () => {
       const greetingsArea = wrapper.find(Typography);
       const greetingsPhrase = greetingsArea.text();
 
-      expect(greetingsPhrase).toEqual("Hello, asd!");
+      expect(greetingsPhrase).toBe("Hello, asd!");
     });
 
     it("should contain chatName", () => {
@@ -80,14 +80,14 @@ describe("Header UI testing", () => {
 
       const chatName = wrapper.find(Typography).text();
 
-      expect(chatName).toEqual("Test Chat");
+      expect(chatName).toBe("Test Chat");
     });
 
     it("should have button with text - Logout", () => {
       const button = wrapper.find(Button);
       const buttonText = button.text();
 
-      expect(buttonText).toEqual("Logout");
+      expect(buttonText).toBe("Logout");
     });
 
     it("should emit callback on click event", () => {

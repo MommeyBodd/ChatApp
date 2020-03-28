@@ -64,7 +64,8 @@ ChatRoom.propTypes = {
 };
 
 ChatRoom.defaultProps = {
-  chatInfo: {}
+  chatInfo: {},
+  currentUser: {}
 };
 
 export default React.memo(ChatRoom);
