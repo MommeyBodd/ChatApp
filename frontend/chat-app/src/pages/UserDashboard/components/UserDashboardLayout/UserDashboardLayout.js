@@ -10,7 +10,7 @@ const UserDashBoardLayout = ({
   onHandleLogout
 }) => {
   return (
-    <div>
+    <>
       <Header userProfile={userProfile} onHandleLogout={onHandleLogout} />
       <div
         style={{
@@ -29,7 +29,7 @@ const UserDashBoardLayout = ({
         ))}
         <CreateChatRoomModal />
       </div>
-    </div>
+    </>
   );
 };
 

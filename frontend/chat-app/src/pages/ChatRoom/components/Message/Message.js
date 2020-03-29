@@ -13,7 +13,7 @@ const Message = ({ author, authorAvatar, text, isIncoming }) => {
         {isIncoming && (
           <div
             className="avatar"
-            style={{ backgroundImage: `url(${authorAvatar})` }}
+            style={{ backgroundImage: `url(${authorAvatar || ""})` }}
           />
         )}
         <div className={`message ${isIncoming ? "incoming" : ""}`}>{text}</div>
@@ -23,7 +23,7 @@ const Message = ({ author, authorAvatar, text, isIncoming }) => {
 };
 
 Message.propTypes = {
-  author: PropTypes.object,
+  author: PropTypes.string,
   text: PropTypes.string,
   isIncoming: PropTypes.bool
 };

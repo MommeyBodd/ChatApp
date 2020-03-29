@@ -29,7 +29,7 @@ describe("CreateChatRoomModal UI testing", () => {
 
     it("should set open modal status to true", () => {
       wrapper
-        .find(".tet-button")
+        .find(".test-button")
         .props()
         .onClick();
 
@@ -44,7 +44,7 @@ describe("CreateChatRoomModal UI testing", () => {
       shallow = createShallow();
     });
 
-    it("button should be disabled if input is empty", () => {
+    it("button should be initially disabled", () => {
       const wrapper = shallow(<CreateChatRoomModal />);
       const buttonDisabledPro = wrapper.find(Button).props().disabled;
 

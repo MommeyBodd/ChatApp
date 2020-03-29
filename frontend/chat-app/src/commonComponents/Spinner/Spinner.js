@@ -5,7 +5,7 @@ import { useStyles } from "./styles";
 export const Spinner = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} spinner`}>
       <CircularProgress />
     </div>
   );

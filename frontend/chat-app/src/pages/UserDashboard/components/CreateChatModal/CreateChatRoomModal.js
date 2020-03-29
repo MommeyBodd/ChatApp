@@ -49,7 +49,7 @@ const CreateChatRoomModal = () => {
       {/*  Create Chat Room!*/}
       {/*</Button>*/}
       <button
-        className="tet-button"
+        className="test-button"
         color="primary"
         style={{ height: 185 }}
         onClick={handleClickOpen}
